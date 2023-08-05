@@ -1,0 +1,176 @@
+.registration-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.registration-form {
+    max-width: 500px;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.registration-form .form-control {
+    border-radius: 5px;
+}
+
+.registration-form button {
+    border-radius: 5px;
+}
+
+.registration-icon {
+    font-size: 80px;
+    color: #e9e9e9;
+    margin-bottom: 20px;
+}
+
+.registration-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.registration-description {
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-align: center;
+    color: #777777;
+}
+
+
+.registration-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.form-label {
+    color: #555555;
+    font-weight: 600;
+}
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.form-label {
+    color: #555555;
+    font-weight: 600;
+}
+
+.login-form {
+    max-width: 500px;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+a{
+    color:#0B6A03;
+}
+
+.login-form .form-control {
+    border-radius: 5px;
+}
+
+.login-form button {
+    border-radius: 5px;
+}
+
+.login-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.login-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.login-description {
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-align: center;
+    color: #fff;
+}
+h4{
+    color:grey;
+}
+.navbar {
+    background: linear-gradient(to bottom right, #002984, #0066FF);
+  }
+
+  .navbar-brand {
+    color: #FFFFFF;
+    font-weight: 600;
+  }
+
+  .nav-link {
+    color: #FFFFFF;
+    font-size: 14px;
+  }
+
+  .nav-link.active {
+    font-weight: 400;
+  }
+
+
+  .panel-icon {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    color: #343a40;
+  }
+
+  .card {
+    border-radius: 10px;
+    transition: transform 0.3s;
+    background-color: #fff;
+    opacity: 0.9;
+    padding: 20px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: #343a40;
+  }
+
+  .card-text {
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #6c757d;
+  }
+
+
+
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  }
+  .btn-primary {
+     
+background: -webkit-linear-gradient(#02aab0,#00cdac);
+border-color: transparent;
+color: #fff;
+font-family: 'Poppins', sans-serif;
+font-size: 0.8rem;
+border-radius: 50px;
+padding: 10px 20px;
+
+}
+
+.btn-primary:hover {
+background: transparent;
+border-color: 4px solid #342a40 ;
+color:#342a40
+}
+
+
