@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/assets/css/style.css">
   <style>
     body {
-      background: linear-gradient(to bottom right, #002984, #1BFFFF);
+      background: linear-gradient(to bottom right, #002984, #0066FF);
       font-family: 'Poppins', sans-serif;
     }
 

@@ -17,7 +17,7 @@
             <div class="col-md-6">
                 <div class="login-form">
                     <h4 class="login-title"><i class="fas fa-user-circle login-icon"></i> CDO-DS Authentification</h4>
-                    <form id="account_login">
+                    <form id="account_login" onsubmit="accountLogin(event)">
                         <div class="mb-3">
                             <label for="email" class="form-label">Employee ID</label>
                             <input type="text" name="employee_id" class="form-control" placeholder="Enter your email">
@@ -44,7 +44,7 @@
                 <p>Thank you for choosing OfficeToolKit and creating an account with us. We look forward to providing you with a seamless and productive office experience.</p>
             </div>
             <div class="text-center mt-3">
-                <p><a href="<?php echo site_url('account/register') ?>" class="text-decoration-none">I don't have an account!</a><p>
+                <p><a href="<?php echo site_url('register') ?>" class="text-decoration-none">I don't have an account!</a><p>
                 <a href="<?php echo site_url('home') ?>" class="text-decoration-none"><b>USE INSTEAD</b></a>
             </div>
         </div>
@@ -53,51 +53,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script>
-        $(function(){
-
-            $("form#account_login").on('submit', function(e) {
-            e.preventDefault();
-        let formData = $("form#account_login").serialize();
-        $.ajax({
-            'url': "<?= base_url() ?>",
-            'method':'POST',
-            'data': formData,
-            'dataType':'JSON',
-            beforeSend(){
-                $("#login").text("Processing...!");
-                $("#login").attr('disabled','disabled');},
-            'success':function(response){
-                $("#login").text("Login");
-                $("#login").attr('disabled',false);
-                if(response.success){
-                window.location.href="<?= base_url('home')?>";
-                }else{
-                    Swal.fire({
-                    position: 'middle',
-                    icon: 'error',
-                    text: response.message,//Login failed, credentials not correct
-                    showConfirmButton: false,
-                    timer: 1500
-                    });
-                }
-            },
-            "error":function(xhr, status, error){
-                Swal.fire({
-                    position: 'middle',
-                    icon: 'error',
-                    text: error,//Login failed, Something is wrong
-                    showConfirmButton: false,
-                    timer: 1500
-                    });
-                $("#login").text("Login");
-                $("#login").attr('disabled',false);
-            }
-        });
-        });
-    });
-    </script>
+    <?php include 'jsProcess/process.php' ?>
 </body>
 </html>
 

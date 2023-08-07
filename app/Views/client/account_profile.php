@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/assets/css/style.css">
   <style>
   body {
-    background: linear-gradient(to bottom right, #002984, #1BFFFF);
+    background: linear-gradient(to bottom right, #002984, #0066FF);
     font-family: 'Poppins', sans-serif;
   }
 
@@ -211,13 +211,15 @@
         <div class="user-profile">
         <?php foreach($account_data as $row): ?>
           <h2 class="profile-name"><?php echo $row['firstname'].' '.$row['lastname'] ?></h2>
+
           <img class="profile-pic" src="https://cdn.britannica.com/99/236599-050-1199AD2C/Mark-Zuckerberg-2019.jpg" alt="Profile Picture">
+          
           <div class="profile-details">
-            <form id="#profile_update_form" >
+            <form onsubmit="updateProfileData(event)" id="profile_form">
             
               <div class="form-group">
                 <label class="label">Employee ID:</label>
-                <input class="form-control edit-input" name="employee_id" type="text" value="<?php echo $row['employee_id_no'] ?>">
+                <input class="form-control edit-input" type="text" value="<?php echo $row['employee_id_no']?>" readonly>
               </div>
               <div class="form-group">
                 <label class="label">First Name:</label>
@@ -241,20 +243,20 @@
               </div>
               <div class="form-group">
                 <label class="label">Date of Birth:</label>
-                <input class="form-control edit-input" name="birth_date" type="text" value="<?php echo $row['birth'] ?>">
+                <input class="form-control edit-input" type="text" value="<?php echo $row['birth'] ?>" readonly>
               </div>
               <div class="form-group">
                 <label class="label">Start Date:</label>
-                <input class="form-control edit-input" name="start_date" type="text" value="<?php echo $row['start_date'] ?>">
+                <input class="form-control edit-input" type="text" value="<?php echo $row['start_date'] ?>" readonly>
               </div>
               <div class="form-group">
                 <label class="label">Status:</label>
-                <input class="form-control edit-input" name="status" type="text" value="<?php echo $row['status'] ?>">
+                <input class="form-control edit-input" type="text" value="<?php echo $row['status'] ?>" readonly>
               </div>
-              <?php endforeach ?>
+              
               <button id="save_changes" type="submit" class="btn btn-primary btn-rounded">Save Changes</button>
             </form>
-
+            <?php endforeach ?>
           </div>
           
         </div>
@@ -266,7 +268,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  
-  
+    <?php include 'jsProcess/process.php' ?>
 
 </body>
 </html>

@@ -49,10 +49,10 @@ background: -webkit-linear-gradient(#02aab0,#00cdac);
           <a class="nav-link active" href="#"><i class="far fa-paper-plane"></i> Shared</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="<?php echo base_url('home/login-activity') ?>"><i class="fa fa-link"></i> Activity</a>
+          <a class="nav-link active" href="<?php echo base_url('/login/activity') ?>"><i class="fa fa-link"></i> Activity</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="<?php echo site_url('/profile') ?>"><i class="far fa-user-circle"></i> Profile</a>
+          <a class="nav-link active" href="<?php echo site_url('account/profile') ?>"><i class="far fa-user-circle"></i> Profile</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="<?php echo base_url('account/logout') ?>"><i class="fas fa-sign-out-alt"></i> Logout</a>

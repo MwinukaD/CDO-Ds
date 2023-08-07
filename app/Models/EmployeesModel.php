@@ -18,4 +18,12 @@ class EmployeesModel extends Model
     public function fetchAccountData($id){
         return $this->where('employee_id_no',$id)->findAll();
     }
+    
+    public function submitUpdatedEMployeeData($id,$data){
+        $this->where('employee_id_no',$id);
+        $this->set($data);
+        $this->update();
+        return true;
+
+    }
 }
