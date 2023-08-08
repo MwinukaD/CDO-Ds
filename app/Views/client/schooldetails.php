@@ -227,7 +227,7 @@
         <div class="sidebar">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo base_url('/project/afyayangumaishayangu/') ?>" style="color:#FF5733"><b>AYMY-DASHBOARD</b></a>
+            <a class="nav-link" href="<?php echo base_url('/project/afyayangumaishayangu/') ?>" style="color:#FF5733"><b>AYMY-DASHBOARD</b></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?php #echo base_url('login/activity') ?>"><i class="fas fa-users"></i> AYMY Clubs</a>
@@ -255,36 +255,28 @@
         </div>
       </div>
       <div class="col-md-9">
-        <div class="user-profile">
-          <h3 class="reached-title">SECONDARY SCHOOLS WE HAVE REACHED</h3>
+      <div class="user-profile">
+          <h2 class="profile-name">School Details</h2>
           <div class="profile-details">
-          <table class="table table-bordered table-striped" id="dataTable">
-      <thead>
-        <tr>
-          <th>S/N</th>
-          <th>Name Of School</th>
-          <th>Location</th>      
-          <th>Head Teacher</th>
-          <th>Unasihi</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-        
-          <td>fdfdfdf</td>
-          <td>sasasasas</td>
-          
-          <td>sfjfjdnf</td>
-          <td>sfjfjdnf</td>
-          <td><a href="<?php echo base_url('reached/school/') ?>" class="view-more-link"><i class="fas fa-info-circle"></i> More Info </a></td>
-        </tr>
+            <!-- Assuming you have an array $schools_data containing data for each school -->
+            <?php
+            
 
-      </tbody>
-    </table>
+            // Loop through each school and display its details
+            //foreach ($schools_data as $school):
+            ?>
+            <div class="school-details">
+              <h3><?php //echo $school['school_name']; ?></h3>
+              <p><strong>Address:</strong> <?php echo "HGHDGSHGDHSDHGSD"//echo $school['address']; ?></p>
+              <p><strong>City:</strong> <?php //echo $school['city']; ?></p>
+              <p><strong>Phone:</strong> <?php //echo $school['phone']; ?></p>
+              <!-- Add more school details as needed -->
+            </div>
+            <hr>
+            <?php// endforeach; ?>
           </div>
         </div>
+      </div>
       </div>
     </div>
   </div><br>
