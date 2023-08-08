@@ -21,6 +21,7 @@ $routes->get('/login/activity','AccountController::loginActivity');
 $routes->post('/submit/account/data','ClientController::submitAccountData');
 $routes->match(['get', 'post'], 'register','ClientController::account');
 $routes->post('/update/profile/data','AccountController::updateProfileData');
+$routes->get('/project/afyayangumaishayangu/','AfyaYanguMaishaYangu::index');
 
 
 //GROUP OF ROUTES THAT NEED AUTHENTICATION TO BE ACCESSED / You must login first to access

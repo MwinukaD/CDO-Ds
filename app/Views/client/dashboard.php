@@ -79,7 +79,7 @@ background: -webkit-linear-gradient(#02aab0,#00cdac);
             <i class="fas fa-tasks panel-icon"></i>
             <h5 class="card-title">#AfyaYanguMaishaYangu</h5>
             <p class="card-text">Here you will find/store all the documents related to #AfyaYanguMaishaYangu.You need credantials to access this panel.</p>
-            <a href="#" class="btn btn-primary btn-rounded">Let's Go</a>
+            <a href="<?php echo base_url('/project/afyayangumaishayangu/');?>" class="btn btn-primary btn-rounded">Let's Go</a>
           </div>
         </div>
       </div>

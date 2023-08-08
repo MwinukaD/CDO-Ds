@@ -50,10 +50,11 @@
       display: block;
     }
 
-    .user-profile .profile-name {
-      font-size: 20px;
+    .reached-title {
+      font-size: 15px;
       font-weight: 600;
       color: #2E3192;
+      margin-bottom: 1em;
       text-align: center;
     }
 
@@ -133,7 +134,7 @@
       margin-right: 10px;
     }
 
-     /* Search Input Style */
+   /* Search Input Style */
   #dataTable_filter {
     text-align: right;
     margin-bottom: 10px;
@@ -179,6 +180,15 @@
   border: 1px solid #f0f0f0;
 }
 
+/* Styling for the "View More" link */
+.view-more-link {
+  color: #2E3192;
+  text-decoration: none;
+}
+
+.view-more-link:hover {
+  text-decoration: underline;
+}
   </style>
 </head>
 <body>
@@ -217,16 +227,26 @@
         <div class="sidebar">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo base_url('account/profile') ?>"><i class="far fa-user-circle"></i> Profile</a>
+              <a class="nav-link" href="#" style="color:#FF5733"><b> DASHBOARD</b></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo base_url('login/activity') ?>"><i class="far fa-calendar-alt"></i> Login Activity</a>
+              <a class="nav-link" href="<?php #echo base_url('login/activity') ?>"><i class="fas fa-users"></i> AYMY Clubs</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><i class="far fa-envelope"></i> My Roles</a>
+              <a class="nav-link" href="#"><i class="far fa-user"></i> Unasihi Teachers</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fas fa-bell"></i> Notification</a>
+              <a class="nav-link" href="#"><i class="fas fa-user"></i> Head Teachers</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="far fa-user"></i> Secretaries</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fas fa-user"></i> ChairPersons</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fas fa-file-alt"></i> File Shelf</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?php echo base_url('account/logout')?>"><i class="far fa-address-card"></i> Sign-Out</a>
@@ -236,45 +256,33 @@
       </div>
       <div class="col-md-9">
         <div class="user-profile">
-          <h2 class="profile-name">John Doe</h2>
-          <img class="profile-pic" src="https://cdn.britannica.com/99/236599-050-1199AD2C/Mark-Zuckerberg-2019.jpg" alt="Profile Picture">
+          <h3 class="reached-title">SECONDARY SCHOOLS WE HAVE REACHED</h3>
           <div class="profile-details">
-    
-      <table class="table table-bordered table-striped" id="dataTable">
+          <table class="table table-bordered table-striped" id="dataTable">
       <thead>
-      <tr>
-        <th>S/N</th>
-        <th>UID</th>
-        <th>Login Time</th>
-        <th>Logout Time</th>
-        <th>Agent</th>
-        <th>IP Address</th>
-      </tr>
+        <tr>
+          <th>S/N</th>
+          <th>Name Of School</th>
+          <th>Location</th>      
+          <th>Head Teacher</th>
+          <th>Unasihi</th>
+          <th>Action</th>
+        </tr>
       </thead>
       <tbody>
-      <?php 
-        $i = 1;
-        foreach($login_activity_data as $row): ?>
         <tr>
-          <td><?php echo $i ?></td>
-          <td><?php echo $row['uniid'] ?></td>
-          <td><?php echo $row['login_time'] ?></td>
-          <td><?php echo $row['logout_time'] ?></td>
-          <td><?php echo $row['agent'] ?></td>
-          <td><?php echo $row['ip_address'] ?></td>
+          <td>1</td>
+        
+          <td>fdfdfdf</td>
+          <td>sasasasas</td>
+          
+          <td>sfjfjdnf</td>
+          <td>sfjfjdnf</td>
+          <td><a href="#" class="view-more-link"><i class="fas fa-info-circle"></i> More Info </a></td>
         </tr>
-      <?php $i++;
-        endforeach 
-      ?>
+
       </tbody>
     </table>
-
-
-
-
-
-
-
           </div>
         </div>
       </div>
@@ -283,8 +291,8 @@
 
   <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-  <!-- DataTables -->
+</body>
+<!-- DataTables -->
 <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
 
@@ -307,5 +315,4 @@
       $('#dataTable_filter input').addClass('form-control');
     });
   </script>
-</body>
 </html>
