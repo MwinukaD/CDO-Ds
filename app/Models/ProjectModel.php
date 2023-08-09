@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class AfyaYanguMaishaYangu extends Model
+class ProjectModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'afyayangumaishayangus';
+    protected $table            = 'projects';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';

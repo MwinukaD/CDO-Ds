@@ -6,6 +6,7 @@ use CodeIgniter\Model;
 
 class LoginActivityModel extends Model{
     protected $table = 'account_login_activity';
+    //protected $table = 'afyayangumaishayangu'; 
     
    public function saveLoginInfo($infos){
     $builder = $this->db->table('account_login_activity');

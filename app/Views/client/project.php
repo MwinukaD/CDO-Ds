@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,7 +56,13 @@
       font-weight: 600;
       color: #2E3192;
       margin-bottom: 1em;
-      text-align: center;
+    }
+    .project-summary{
+      font-size: 23px;
+      font-weight: 600;
+      color: #2E3192;
+      margin-bottom: 1em;
+      
     }
 
     .user-profile .profile-details {
@@ -134,67 +141,70 @@
       margin-right: 10px;
     }
 
-   /* Search Input Style */
-  #dataTable_filter {
-    text-align: right;
-    margin-bottom: 10px;
-  }
+    /* Search Input Style */
+    #dataTable_filter {
+      text-align: right;
+      margin-bottom: 10px;
+    }
 
-  #dataTable_filter input {
-    width: 250px;
-    padding: 8px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    margin-bottom: 20px;
-  }
+    #dataTable_filter input {
+      width: 250px;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      margin-bottom: 20px;
+    }
 
-  /* Additional styling for the table headers */
-  .table thead th {
-    background-color: #f0f0f0;
-    color: #2E3192;
-    font-weight: 600;
-  }
+    /* Additional styling for the table headers */
+    .table thead th {
+      background-color: #f0f0f0;
+      color: #2E3192;
+      font-weight: 600;
+    }
 
-  /* Additional styling for the table rows */
-  .table tbody td {
-    color: #666666;
-  }
+    /* Additional styling for the table rows */
+    .table tbody td {
+      color: #666666;
+    }
 
-  .table-bordered th,
-  .table-bordered td {
-    border: 1px solid #f0f0f0;
-  }
-  .table thead th {
-  background-color: #f0f0f0;
-  color: #2E3192;
-  font-weight: 600;
-}
+    .table-bordered th,
+    .table-bordered td {
+      border: 1px solid #f0f0f0;
+    }
 
-/* Additional styling for the table rows */
-.table tbody td {
-  color: #666666;
-}
+    .table thead th {
+      background-color: #f0f0f0;
+      color: #2E3192;
+      font-weight: 600;
+    }
 
-.table-bordered th,
-.table-bordered td {
-  border: 1px solid #f0f0f0;
-}
+    /* Additional styling for the table rows */
+    .table tbody td {
+      color: #666666;
+    }
 
-/* Styling for the "View More" link */
-.view-more-link {
-  color: #2E3192;
-  text-decoration: none;
-}
+    .table-bordered th,
+    .table-bordered td {
+      border: 1px solid #f0f0f0;
+    }
 
-.view-more-link:hover {
-  text-decoration: underline;
-}
+    /* Styling for the "View More" link */
+    .view-more-link {
+      color: #2E3192;
+      text-decoration: none;
+    }
+
+    .view-more-link:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
+
 <body>
-<nav class="navbar navbar-expand-md navbar-dark">
+  <nav class="navbar navbar-expand-md navbar-dark">
     <a class="navbar-brand" href="<?php echo base_url('home') ?>">CDO-Ds</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -209,13 +219,16 @@
           <a class="nav-link active" href="#"><i class="far fa-paper-plane"></i> Shared</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="<?php echo base_url('login/activity') ?>"><i class="fa fa-link"></i> Activity</a>
+          <a class="nav-link active" href="<?php echo base_url('login/activity') ?>"><i class="fa fa-link"></i>
+            Activity</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="<?php echo base_url('account/profile') ?>"><i class="far fa-user-circle"></i> Profile</a>
+          <a class="nav-link active" href="<?php echo base_url('account/profile') ?>"><i class="far fa-user-circle"></i>
+            Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="<?php echo base_url('account/logout') ?>"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          <a class="nav-link active" href="<?php echo base_url('account/logout') ?>"><i class="fas fa-sign-out-alt"></i>
+            Logout</a>
         </li>
       </ul>
     </div>
@@ -227,10 +240,12 @@
         <div class="sidebar">
           <ul class="nav flex-column">
             <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('/project/afyayangumaishayangu/') ?>" style="color:#FF5733"><b>AYMY-DASHBOARD</b></a>
+              <a class="nav-link" href="<?php echo base_url('/project/afyayangumaishayangu/') ?>"
+                style="color:#FF5733"><b>AYMY-DASHBOARD</b></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?php #echo base_url('login/activity') ?>"><i class="fas fa-users"></i> AYMY Clubs</a>
+              <a class="nav-link" href="<?php #echo base_url('login/activity') ?>"><i class="fas fa-users"></i> AYMY
+                Clubs</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#"><i class="far fa-user"></i> Unasihi Teachers</a>
@@ -249,57 +264,101 @@
               <a class="nav-link" href="#"><i class="fas fa-file-alt"></i> File Shelf</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo base_url('account/logout')?>"><i class="far fa-address-card"></i> Sign-Out</a>
+              <a class="nav-link" href="<?php echo base_url('account/logout') ?>"><i class="far fa-address-card"></i>
+                Sign-Out</a>
             </li>
           </ul>
         </div>
       </div>
       <div class="col-md-9">
-      <div class="user-profile">
-          <h3 class="profile-name">School Details</h3>
+        <div class="user-profile">
+          <h2 class="project-summary">Project : Summary</h2>
           <div class="profile-details">
-            <?php //foreach ($schools_data as $school): ?>
             <div class="school-details">
-              <h3><?php //echo $school['school_name']; ?></h3>
-              <p><strong>Address:</strong> <?php echo "HGHDGSHGDHSDHGSD"//echo $school['address']; ?></p>
-              <p><strong>City:</strong> <?php //echo $school['city']; ?></p>
-              <p><strong>Phone:</strong> <?php //echo $school['phone']; ?></p>
-              <!-- Add more school details as needed -->
+              <h3>
+                <?php //echo $school['school_name']; ?>
+              </h3>
+              <p><strong>School Reached</strong>
+                <?php echo "HGHDGSHGDHSDHGSD" //echo $school['address']; ?>
+              </p>
+              <p><strong>Ward Reached</strong>
+                <?php //echo $school['city']; ?>
+              </p>
+              <p><strong>Clubs Formed</strong>
+                <?php //echo $school['phone']; ?>
+              </p>
+              <p><strong>Students Reached</strong>
+                <?php //echo $school['phone']; ?>
+              </p>
+              <p><strong>Young Women Reached</strong>
+                <?php //echo $school['phone']; ?>
+              </p>
             </div>
-            <hr>
-            <?php // endforeach; ?>
+
+          </div>
+        </div><br>
+
+        <div class="user-profile">
+          <h3 class="reached-title">PROJECT REPORTS & RELATED DOCS</h3>
+          <div class="profile-details">
+            <table class="table table-bordered table-striped" id="dataTable">
+              <thead>
+                <tr>
+                  <th>S/N</th>
+                  <th>Name Of School</th>
+                  <th>Location</th>
+                  <th>Head Teacher</th>
+                  <th>Unasihi</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+
+                  <td>fdfdfdf</td>
+                  <td>sasasasas</td>
+
+                  <td>sfjfjdnf</td>
+                  <td>sfjfjdnf</td>
+                  <td><a href="<?php echo base_url('reached/school/') ?>" class="view-more-link"><i
+                        class="fas fa-info-circle"></i> More Info </a></td>
+                </tr>
+
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-      </div>
-
     </div>
   </div><br>
 
-  <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+    crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 <!-- DataTables -->
 <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
 
-  <script>
-    $(document).ready(function () {
-      // Initialize DataTable with options
-      $('#dataTable').DataTable({
-        "paging": true,
-        "searching": true,
-        "ordering": true,
-        "lengthChange": false, // Disable showing entries
-        "info": false, // Disable showing showing x to y of z entries
-        "language": {
-          "search": "",
-          "searchPlaceholder": "Search...",
-        },
-      });
-
-      // Style the search input
-      $('#dataTable_filter input').addClass('form-control');
+<script>
+  $(document).ready(function () {
+    // Initialize DataTable with options
+    $('#dataTable').DataTable({
+      "paging": true,
+      "searching": true,
+      "ordering": true,
+      "lengthChange": false, // Disable showing entries
+      "info": false, // Disable showing showing x to y of z entries
+      "language": {
+        "search": "",
+        "searchPlaceholder": "Search...",
+      },
     });
-  </script>
+
+    // Style the search input
+    $('#dataTable_filter input').addClass('form-control');
+  });
+</script>
+
 </html>

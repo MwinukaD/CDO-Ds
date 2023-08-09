@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\AccountModel;
 use App\Models\EmployeesModel;
 use App\Models\LoginActivityModel;
+use App\Models\DashboardModel;
 
 class ClientController extends BaseController{
     #CONSTRUCT FUNCTION, this will be called before any method
@@ -24,8 +25,9 @@ class ClientController extends BaseController{
     }
 
     public function dashboard(){
-        
-        return view('client/dashboard');
+        $model = new DashboardModel();
+        $result['projects']= $model->findAll();
+        return view('client/dashboard',$result);
     }
 
    #******FUNCTION TO SUBMIT NEW ACCOUNT DATA*******

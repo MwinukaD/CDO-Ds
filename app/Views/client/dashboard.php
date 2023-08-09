@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OfficeToolKit</title>
+  <title>CDO-DS</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -25,11 +25,8 @@ margin-bottom: 10px;
 background: -webkit-linear-gradient(#02aab0,#00cdac);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
-}
-
-  
-    
-  </style>
+} 
+</style>
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark">
@@ -67,9 +64,9 @@ background: -webkit-linear-gradient(#02aab0,#00cdac);
         <div class="card">
           <div class="card-body text-center">
             <i class="far fa-user-circle panel-icon"></i>
-            <h5 class="card-title">#ChangaraweProject</h5>
-            <p class="card-text">Here you will find/store all the documents related to Changarawe Project.You need credantials to access this panel.</p>
-            <a href="#" class="btn btn-primary btn-rounded">Let's Go</a>
+            <h5 class="card-title">ChangaraweProject</h5>
+            <p class="card-text">Here you will find/store all the documents related to Changarawe Project.</p>
+            <a href="<?php echo base_url('/project/afyayangumaishayangu/');?>" class="btn btn-primary btn-rounded">Let's Go</a>
           </div>
         </div>
       </div>
@@ -77,8 +74,8 @@ background: -webkit-linear-gradient(#02aab0,#00cdac);
         <div class="card">
           <div class="card-body text-center">
             <i class="fas fa-tasks panel-icon"></i>
-            <h5 class="card-title">#AfyaYanguMaishaYangu</h5>
-            <p class="card-text">Here you will find/store all the documents related to #AfyaYanguMaishaYangu.You need credantials to access this panel.</p>
+            <h5 class="card-title">AfyaYanguMaishaYangu</h5>
+            <p class="card-text">Here you will find/store all the documents related to #AfyaYanguMaishaYangu.</p>
             <a href="<?php echo base_url('/project/afyayangumaishayangu/');?>" class="btn btn-primary btn-rounded">Let's Go</a>
           </div>
         </div>
@@ -87,9 +84,9 @@ background: -webkit-linear-gradient(#02aab0,#00cdac);
         <div class="card">
           <div class="card-body text-center">
             <i class="fas fa-folder panel-icon"></i>
-            <h5 class="card-title">#WatotoWetuTunuYetu</h5>
-            <p class="card-text">Here you will find/store all the documents related to #WatotoWetuTunuYetu.You need credantials to access this panel.</p>
-            <a href="#" class="btn btn-primary btn-rounded">Let's Go</a>
+            <h5 class="card-title">WatotoWetuTunuYetu</h5>
+            <p class="card-text">Here you will find/store all the documents related to #WatotoWetuTunuYetu.</p>
+            <a href="<?php echo base_url('/project/afyayangumaishayangu/');?>" class="btn btn-primary btn-rounded">Let's Go</a>
           </div>
         </div>
       </div>
@@ -97,9 +94,9 @@ background: -webkit-linear-gradient(#02aab0,#00cdac);
         <div class="card">
           <div class="card-body text-center">
             <i class="far fa-calendar-alt panel-icon"></i>
-            <h5 class="card-title">#MtotoKwanza</h5>
-            <p class="card-text">Here you will find/store all the documents related to Mtoto Kwanza.You need credantials to access this panel. </p>
-            <a href="#" class="btn btn-primary btn-rounded">Let's Go</a>
+            <h5 class="card-title">MtotoKwanza</h5>
+            <p class="card-text">Here you will find/store all the documents related to Mtoto Kwanza. </p>
+            <a href="<?php echo base_url('/project/afyayangumaishayangu/');?>" class="btn btn-primary btn-rounded">Let's Go</a>
           </div>
         </div>
       </div>
@@ -107,9 +104,9 @@ background: -webkit-linear-gradient(#02aab0,#00cdac);
         <div class="card">
           <div class="card-body text-center">
             <i class="fas fa-comments panel-icon"></i>
-            <h5 class="card-title">#InclusiveEductaion</h5>
-            <p class="card-text">Here you will find/store all the documents related to Inclusive Education.You need credantials to access this panel. </p>
-            <a href="#" class="btn btn-primary btn-rounded">Let's Go</a>
+            <h5 class="card-title">InclusiveEductaion</h5>
+            <p class="card-text">Here you will find/store all the documents related to Inclusive Education. </p>
+            <a href="<?php echo base_url('/project/afyayangumaishayangu/');?>" class="btn btn-primary btn-rounded">Let's Go</a>
           </div>
         </div>
       </div>
@@ -119,16 +116,12 @@ background: -webkit-linear-gradient(#02aab0,#00cdac);
             <i class="far fa-money-bill-alt panel-icon"></i>
             <h5 class="card-title">#Administration</h5>
             <p class="card-text">All Administration Related Files/ Folders are stored in this panel, No authentification needed to eccess those files/folders.</p>
-            <a href="#" class="btn btn-primary btn-rounded">Let's Go</a>
+            <a href="<?php echo base_url('/project/afyayangumaishayangu/');?>" class="btn btn-primary btn-rounded">Let's Go</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-  <?php 
-    echo $this->include('layouts/footer');
-  ?>
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
