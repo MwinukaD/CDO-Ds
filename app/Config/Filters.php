@@ -8,12 +8,9 @@ use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\Honeypot;
 use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
-use App\Filters\Auth;
 
 class Filters extends BaseConfig
 {
- 
-    
     /**
      * Configures aliases for Filter classes to
      * make reading things nicer and simpler.
@@ -24,8 +21,6 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        "auth" => Auth::class,
-        
     ];
 
     /**
@@ -37,17 +32,11 @@ class Filters extends BaseConfig
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',
-            
-            //'loginFilter'
-            //'auth' 
-            
-            
         ],
         'after' => [
             'toolbar',
             // 'honeypot',
             // 'secureheaders',
-           
         ],
     ];
 
@@ -60,7 +49,7 @@ class Filters extends BaseConfig
      *
      * If you use this, you should disable auto-routing because auto-routing
      * permits any HTTP method to access a controller. Accessing the controller
-     * with a method you don’t expect could bypass the filter.
+     * with a method you don't expect could bypass the filter.
      */
     public array $methods = [];
 

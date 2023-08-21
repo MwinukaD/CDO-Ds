@@ -1,0 +1,104 @@
+ body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+  /* Set position to fixed for the navbar */
+.navbar {
+  background: linear-gradient(to bottom right, #002984, #0066FF);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Adjust padding for the content container to account for the fixed navbar and sidebar */
+.content-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 70px; /* Add margin to account for the fixed navbar's height */
+  margin-left: 250px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+/* Adjust the position of the sidebar to account for the fixed navbar */
+.sidebar {
+  background: linear-gradient(to bottom right, #002984, #0066FF);
+  color: #fff;
+  transition: width 0.3s ease-in-out;
+  width: 250px;
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 100;
+  top: 0; /* Set the top position to 0 to align with the fixed navbar */
+}
+
+/* Other styles remain the same */
+/* ... */
+
+
+    .navbar-brand {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .nav-link {
+      color: #FFFFFF;
+      font-size: 14px;
+    }
+
+    .nav-link.active {
+      font-weight: 400;
+    }
+
+  
+    .sidebar-header {
+      padding: 10px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar li {
+      padding: 5px 10px;
+    }
+
+    .sidebar a {
+      color: #fff;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.3s;
+      display: block;
+    }
+
+    .sidebar a:hover {
+      color: #f0f0f0;
+    }
+
+
+
+    h1,
+    h3 {
+      color: #333;
+    }
+
+    p {
+      color: #777;
+      line-height: 1.6;
+    }
+
+    .table {
+      width: 100%;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    th {
+      background-color: #f8f9fa;
+    }

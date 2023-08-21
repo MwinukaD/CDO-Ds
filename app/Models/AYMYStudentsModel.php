@@ -6,36 +6,36 @@ use CodeIgniter\Model;
 
 class AYMYStudentsModel extends Model
 {
-    protected $DBGroup          = 'default';
-    protected $table            = 'aymy_students_reached';
-    protected $primaryKey       = 'id';
+    protected $DBGroup = 'default';
+    protected $table = 'aymy_students_reached';
+    protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
-    protected $allowedFields    = ['student_name','student_age','student_class','school','comment','status'];
+    protected $returnType = 'array';
+    protected $useSoftDeletes = false;
+    protected $protectFields = true;
+    protected $allowedFields = ['schoolID', 'firstname', 'lastname', 'student_age', 'live_with', 'parent_jobType', 'parent_job', 'student_class', 'membership'];
 
-    // Dates
-    protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
+    public function checkStudentExist($firstname, $lastname, $age, $class, $liveWith, $jobStatus, $schoolID)
+    {
+        return $this->where('firstname', $firstname)
+            ->where('lastname', $lastname)
+            ->where('student_age', $age)
+            ->where('student_class', $class)
+            ->where('live_with', $liveWith)
+            ->where('parent_jobType', $jobStatus)
+            ->where('schoolID', $schoolID)
+            ->first();
 
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
+    }
 
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+    public function removeStudent($id)
+    {
+        return $this->where('id', $id)->delete();
+
+    }
+
+
+
+
+
 }

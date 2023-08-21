@@ -4,9 +4,9 @@ namespace App\Controllers;
 
 class Home extends BaseController
 {
-    public function index()
-    {
-        //return view('client_signin_page');
+    public function index(): string{
+        return view('welcome_message');
     }
+
 
 }

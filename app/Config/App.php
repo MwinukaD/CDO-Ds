@@ -42,7 +42,7 @@ class App extends BaseConfig
      * something else. If you are using mod_rewrite to remove the page set this
      * variable so that it is blank.
      */
-    public string $indexPage = '';
+    public string $indexPage = 'index.php';
 
     /**
      * --------------------------------------------------------------------------
@@ -94,6 +94,8 @@ class App extends BaseConfig
      * by the application in descending order of priority. If no match is
      * found, the first locale will be used.
      *
+     * IncomingRequest::setLocale() also uses this list.
+     *
      * @var string[]
      */
     public array $supportedLocales = ['en'];
@@ -124,7 +126,7 @@ class App extends BaseConfig
 
     /**
      * --------------------------------------------------------------------------
-     * URI PROTOCOL
+     * Force Global Secure Requests
      * --------------------------------------------------------------------------
      *
      * If true, this will force every request made to this application to be
