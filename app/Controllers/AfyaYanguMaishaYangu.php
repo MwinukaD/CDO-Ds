@@ -375,9 +375,19 @@ class AfyaYanguMaishaYangu extends BaseController
             $title = $this->request->getVar('fileTitle');
             $project = $this->request->getVar('project');
             $type = $this->request->getVar('type');
-
-
             $uploader = $session->get('employee_id');
+
+            //CHECKING IF FILE EXIST
+            $exist = $uploadedFilesModel->where('type', $type)->where('title', $title, )->where('project', $project, )->first();
+            if ($exist) {
+
+                $response = [
+                    'status' => 'error',
+                    'message' => 'Sorry this file already exist.'
+                ];
+
+            }
+
 
             $inputs = [
                 'type' => $type,
@@ -388,6 +398,7 @@ class AfyaYanguMaishaYangu extends BaseController
 
             ];
             //$uploadedFilesModel->fill($inputs);
+
             $save = $uploadedFilesModel->save($inputs);
 
             if (!$save) {
