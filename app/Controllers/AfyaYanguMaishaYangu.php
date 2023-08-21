@@ -375,60 +375,46 @@ class AfyaYanguMaishaYangu extends BaseController
             $title = $this->request->getVar('fileTitle');
             $project = $this->request->getVar('project');
             $type = $this->request->getVar('type');
-            $uploader = $session->get('employee_id');
+            $uploader = $session->has('employee_id');
 
             //CHECKING IF FILE EXIST
             $exist = $uploadedFilesModel->where('type', $type)->where('title', $title, )->where('project', $project, )->first();
-            if ($exist) {
-
+            if (!$exist) {
+                $inputs = [
+                    'type' => $type,
+                    'title' => $title,
+                    'file' => $filename,
+                    'project' => $project,
+                    'staffID' => $uploader
+                ];
+                //$uploadedFilesModel->fill($inputs);
+                $save = $uploadedFilesModel->save($inputs);
+                if (!$save) {
+                    $response = [
+                        'status' => 'error',
+                        'message' => 'File uploading failed.'
+                    ];
+                }
+                $response = [
+                    'status' => 'success',
+                    'message' => 'File uploaded successfully.'
+                ];
+            } else {
                 $response = [
                     'status' => 'error',
                     'message' => 'Sorry this file already exist.'
                 ];
-
+                //return $this->response->setJSON($response);
             }
-
-
-            $inputs = [
-                'type' => $type,
-                'title' => $title,
-                'file' => $filename,
-                'project' => $project,
-                'staffID' => $uploader
-
-            ];
-            //$uploadedFilesModel->fill($inputs);
-
-            $save = $uploadedFilesModel->save($inputs);
-
-            if (!$save) {
-
-                $response = [
-                    'status' => 'error',
-                    'message' => 'File uploading failed.'
-                ];
-
-            }
-
-            $response = [
-                'status' => 'success',
-                'message' => 'File uploaded successfully.'
-            ];
-
-
         } else {
             $response = [
                 'status' => 'error',
                 'message' => 'File uploading failed.'
             ];
         }
+
         return $this->response->setJSON($response);
     }
-
-
-
-
-
 
 
 }
