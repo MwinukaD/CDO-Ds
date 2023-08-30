@@ -10,7 +10,6 @@ use App\Models\DashboardModel;
 
 class ClientController extends BaseController
 {
-
     public function account()
     {
         return view('client/account');

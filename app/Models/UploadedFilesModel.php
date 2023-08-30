@@ -13,7 +13,7 @@ class UploadedFilesModel extends Model
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
     protected $protectFields = true;
-    protected $allowedFields = ['type', 'title', 'uploaded_date', 'file', 'project', 'staffID'];
+    protected $allowedFields = ['type', 'title', 'uploaded_date', 'file', 'project', 'staffID', 'status', 'deleted_date', 'deleted_by'];
 
     // Dates
     protected $useTimestamps = false;
@@ -38,4 +38,30 @@ class UploadedFilesModel extends Model
     protected $afterFind = [];
     protected $beforeDelete = [];
     protected $afterDelete = [];
+
+
+
+
+
+    public function changeFileStatus($file_id, $date, $deleted_by): bool
+    {
+        $this->set('status', 'INACTIVE');
+        $this->set('deleted_date', $date);
+        $this->set('deleted_by', $deleted_by);
+        $this->where('id', $file_id);
+        $this->update();
+        return true; // or false, depending on the success of the update operation
+    }
+
+
+    public function restoreDeletedFile($file_id): bool
+    {
+        $this->set('status', 'ACTIVE');
+        $this->where('id', $file_id);
+        $this->update();
+        return true; // or false, depending on the success of the update operation
+    }
+
+
+
 }

@@ -3,10 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\AYMYWardsModel;
 use App\Models\AYMYSchoolsModel;
 use App\Models\AYMYStudentsModel;
-use App\Models\AYMYYoungWomenModel;
 use App\Models\UploadedFilesModel;
 use App\Models\AYMYTeachers;
 
@@ -110,7 +108,6 @@ class AfyaYanguMaishaYangu extends BaseController
         }
         return $this->response->setJSON($response);
     }
-
 
 
 
@@ -342,17 +339,21 @@ class AfyaYanguMaishaYangu extends BaseController
     public function uploadedFiles()
     {
         $UploadedFilesModel = new UploadedFilesModel();
+        $result['totalTrashedFiles'] = $UploadedFilesModel->where('project', 'AYMY')->where('status', 'INACTIVE')->countAllResults();
 
-        $result['uploadedDocs'] = $UploadedFilesModel->select('uploadedfiles.*, cdo_employees.*')
-            ->join('cdo_employees', 'cdo_employees.id = uploadedfiles.staffID')
-            ->where('uploadedfiles.project', "AYMY")
+
+        $result['uploadedDocs'] = $UploadedFilesModel->select('uploadedfiles.*, cdo_employees.firstname,cdo_employees.lastname,cdo_employees.employee_id_no,')
+            ->join('cdo_employees', 'cdo_employees.employee_id_no = uploadedfiles.staffID')
+            ->where('uploadedfiles.project', "AYMY")->where('uploadedfiles.status', "ACTIVE")
             ->orderBy('uploadedfiles.id', 'desc')
             ->findAll();
 
-        $result['totalUploadedDocs'] = $UploadedFilesModel->where('project', 'AYMY')->countAllResults();
+        $result['totalUploadedDocs'] = $UploadedFilesModel->where('project', 'AYMY')->where('status', "ACTIVE")->countAllResults();
 
         return view("client/aymy_uploaded_files", $result);
     }
+
+
 
 
 
@@ -369,17 +370,18 @@ class AfyaYanguMaishaYangu extends BaseController
 
         if ($uploadedfile->isValid() && !$uploadedfile->hasMoved()) {
             $filename = $uploadedfile->getRandomName();
-            $uploadedfile->move(ROOTPATH . 'public/uploads', $filename);
+
 
 
             $title = $this->request->getVar('fileTitle');
             $project = $this->request->getVar('project');
             $type = $this->request->getVar('type');
-            $uploader = $session->has('employee_id');
+            $uploader = $session->get('employee_id');
 
             //CHECKING IF FILE EXIST
-            $exist = $uploadedFilesModel->where('type', $type)->where('title', $title, )->where('project', $project, )->first();
+            $exist = $uploadedFilesModel->where('type', $type)->where('title', $title)->where('project', $project)->where('status', "ACTIVE")->first();
             if (!$exist) {
+                $uploadedfile->move(ROOTPATH . 'public/uploads', $filename);
                 $inputs = [
                     'type' => $type,
                     'title' => $title,
@@ -412,9 +414,52 @@ class AfyaYanguMaishaYangu extends BaseController
                 'message' => 'File uploading failed.'
             ];
         }
-
         return $this->response->setJSON($response);
     }
+
+    public function removeFile()
+    {
+        $fileID = $this->request->getPost('id');
+        $deleted_by = $this->request->getPost('deleted_by');
+        $date_deleted = date('Y-m-d h:i:s');
+        $uploadedFilesModel = new UploadedFilesModel(); // Model for UploadedFiles
+        $removed_doc = $uploadedFilesModel->changeFileStatus($fileID, $date_deleted, $deleted_by);
+        if ($removed_doc) {
+            $response = ["status" => "success", "message" => "File successfully deleted !."];
+        } else {
+            $response = ["status" => "error", "message" => "Failed to delete the file"];
+        }
+        return $this->response->setJSON($response);
+    }
+
+    public function restoreFile()
+    {
+        $fileID = $this->request->getPost('id');
+        $uploadedFilesModel = new UploadedFilesModel(); // Model for UploadedFiles
+        $file_restored = $uploadedFilesModel->restoreDeletedFile($fileID);
+        if ($file_restored) {
+            $response = ["status" => "success", "message" => "File successfully restored !."];
+        } else {
+            $response = ["status" => "error", "message" => "Failed to restore this file"];
+        }
+        return $this->response->setJSON($response);
+    }
+
+    public function trashedFiles()
+    {
+        $UploadedFilesModel = new UploadedFilesModel();
+        $result['totalTrashedFiles'] = $UploadedFilesModel->where('project', 'AYMY')->where('status', 'INACTIVE')->countAllResults();
+        $result['uploadedDocs'] = $UploadedFilesModel->select('uploadedfiles.*, cdo_employees.firstname,cdo_employees.lastname')
+            ->join('cdo_employees', 'cdo_employees.employee_id_no = uploadedfiles.staffID')
+            ->where('uploadedfiles.project', "AYMY")->where('uploadedfiles.status', "INACTIVE")
+            ->orderBy('uploadedfiles.deleted_date', 'desc')
+            ->findAll();
+
+        $result['totalUploadedDocs'] = $UploadedFilesModel->where('project', 'AYMY')->countAllResults();
+
+        return view("client/trashed_files", $result);
+    }
+
 
 
 }

@@ -58,8 +58,7 @@
     <div class="sidebar">
         <ul class="nav flex-column" style="margin-top:4em;">
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url('/project/afyayangumaishayangu/') ?>"
-                    style="color:#FF5733; font-size: 17px;"><b>
+                <a class="nav-link" href="#" style="color:#FF5733; font-size: 17px;"><b>
                         <?php
                         $session = session();
                         echo $session->get('employee_id'); ?>

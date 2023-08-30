@@ -2,15 +2,13 @@
 <!-- Page content -->
 <div class="content-container">
     <div class="container">
-        <h4 class="text-center">AYMY UPLOADED FILES
+        <h4 class="text-center">TRASHED FILES
             <button class="btn btn-primary btn-rounded" data-bs-toggle="modal" data-bs-target="#addSchoolModal"
                 id="add_SchoolButton"><i class="fas fa-user-alt"></i> Upload New FIle</button>
         </h4>
         <p class="text-center">So far we have
-            <?php echo $totalUploadedDocs; ?> uploaded files <a href="<?php echo base_url('/trashed/files/') ?>"
-                style="font-size:15px"> <i class="fas fa-forward" style="color:#DB1F48">
-                    <?php echo $totalTrashedFiles ?> Files Deleted
-                </i>
+            <?php echo $totalTrashedFiles; ?> trashed files <a href="<?php echo base_url('/aymy/uploaded-files/') ?>">
+                <i class="fas fa-backward"> Go Back</i>
             </a>
         </p>
         <!-- Data Table -->
@@ -20,10 +18,10 @@
                     <th>SNo</th>
                     <th>File Title</th>
                     <th>File Type</th>
-                    <th>Who Uploaded</th>
-                    <th>Uploaded Date</th>
-                    <th>Download</th>
-                    <th>Delete</th>
+                    <th>Uploaded By</th>
+                    <th>Deleted By</th>
+                    <th>Date Deleted</th>
+                    <th>Restore</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,14 +40,13 @@
                             <?php echo $data['firstname'] . '  ' . $data['lastname'] ?>
                         </td>
                         <td>
-                            <?php echo $data['uploaded_date'] ?>
+                            <?php echo $data['deleted_by'] ?>
                         </td>
-                        <td><a href="<?php echo base_url('/uploads/' . $data['file']) ?>" style="font-size:17px;"><i
-                                    class="fas fa-download"></i></a>
+                        <td>
+                            <?php echo $data['deleted_date'] ?>
                         </td>
-
-                        <td><button class="removed_doc_ID  btn btn-danger" data-id1="<?php echo $data['id'] ?>"
-                                data-id2="<?php echo $data['employee_id_no'] ?>"><i class="fas fa-trash"></i>
+                        <td><button class="removed_doc_ID  btn btn-success" data-id1="<?php echo $data['id'] ?>">
+                                <i class="fas fa-undo"></i>
                             </button>
                         </td>
 
@@ -134,7 +131,7 @@
 <?php
 //AJAX CODE FOR  ADDING NEW SCHOOL
 include "jsProcess/addNewFile.php";
-include "jsProcess/removeFile.php";
+include "jsProcess/restoreFile.php";
 ?>
 
 

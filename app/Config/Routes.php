@@ -34,16 +34,24 @@ $routes->post('/upload/new-file/', 'AfyaYanguMaishaYangu::uploadNewFile');
 
 $routes->get('/aymy/unasihi-teachers/', 'AfyaYanguMaishaYangu::unasihiTeachers');
 $routes->get('/aymy/uploaded-files/', 'AfyaYanguMaishaYangu::uploadedFiles');
+$routes->get('/trashed/files/', 'AfyaYanguMaishaYangu::trashedFiles');
 
 $routes->get('/aymy/club-chairpersons/', 'AfyaYanguMaishaYangu::clubChairpersons');
 $routes->get('/aymy/club-secretaries/', 'AfyaYanguMaishaYangu::clubSecretaries');
 $routes->get('/aymy/head-teachers/', 'AfyaYanguMaishaYangu::headTeachers');
 $routes->get('home', 'ClientController::dashboard');
-//$routes->post('/add/unasihi/teacher/', 'AfyaYanguMaishaYangu::submitUnasihiTeacherData');
+
+
 $routes->post('/remove/unasihi/teacher/', 'AfyaYanguMaishaYangu::removeUnasihiTeacher'); ///remove/unasihi/teacher/
 $routes->post('/remove/school/', 'AfyaYanguMaishaYangu::removeSchool');
 $routes->post('/remove/student/', 'AfyaYanguMaishaYangu::removeStudent');
 $routes->post('/remove/teacher/', 'AfyaYanguMaishaYangu::removeTeacher');
+$routes->post('/remove/file/', 'AfyaYanguMaishaYangu::removeFile');
+$routes->post('/restore/file/', 'AfyaYanguMaishaYangu::restoreFile');
+
+
+//TESTING ROUTES
+//$routes->post('/change/file/status/', 'AfyaYanguMaishaYangu::changeFileStatus');
 
 if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
