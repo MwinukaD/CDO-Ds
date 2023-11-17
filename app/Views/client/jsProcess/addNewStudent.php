@@ -1,10 +1,10 @@
 <script>
-    $("#schoolForm").on('submit', function (event) {
+    $("#schoolForm").on('submit',(event)=>{
         event.preventDefault();
-        let data = $(this).serialize();
+        const formData = $("#schoolForm").serialize();
         $.ajax({
             "method": "POST",
-            "data": data,
+            "data": formData,
             "url": "<?php echo base_url('/add/student/') ?>",
             beforeSend() {
                 $("#addSchoolModal").hide();

@@ -31,7 +31,7 @@ class LoginActivityModel extends Model{
 
 public function fetchLoginActivityData($userID){
     
-    return $this->where('uniid',$userID)->findAll();
+    return $this->where('uniid',$userID)->orderBy('login_time','DESC')->findAll();
 }
 
 

@@ -4,16 +4,16 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class AYMYWardsModel extends Model
+class CPSchoolsModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'aymy_wards_reached';
+    protected $table            = 'cp_schools';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['ward_name','status'];
+    protected $allowedFields    = ['class_levelID ','school_name','head_teacher','contacts'];
 
     // Dates
     protected $useTimestamps = false;

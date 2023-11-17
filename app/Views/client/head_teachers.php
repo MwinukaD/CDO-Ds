@@ -67,7 +67,7 @@
 
 <script>
     $(document).ready(function () {
-        var dataTable = $('#myTable').DataTable({
+        let dataTable = $('#myTable').DataTable({
             paging: true, // Enable pagination
             searching: true, // Enable search functionality
             ordering: true, // Enable column sorting

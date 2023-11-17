@@ -1,16 +1,15 @@
 <script>
     $(document).ready(function () { });
-    $(".removed_doc_ID").on('click', function () {
-        let docID = $(this).data('id1');
-        //$who_deleted_id = $(this).data('id2');
-
+    $(".removedYW").on('click', function () {
+        let ywID = $('.removedYW').attr('id');
         $.ajax({
-            "url": "<?php echo base_url('/restore/file/'); ?>",
-            "data": { id: docID },
+            "url": "<?php echo base_url('/remove-yw/'); ?>",
+            "data": { id: ywID },
             "method": "POST",
             beforeSend() {
-                $(".removed_doc_ID").attr('disabled', 'disabled');
+                $(".removedYW").hide();
             },
+
             success: function (response) {
                 Swal.fire({
                     position: 'middle',
@@ -30,8 +29,6 @@
                     text: error,//Teacher Inserted
                     showConfirmButton: true,
                     //timer: 1500
-                }).then(function () {
-                    location.reload();
                 })
 
             }

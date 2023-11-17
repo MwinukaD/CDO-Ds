@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>OT-Kit Login</title>
+    <title>CDO-DS Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/style.css">
     <style>
@@ -40,12 +40,11 @@
                     <img src="/assets/images/logo.png" alt="Logo" width="200">
                 </div>
                 <div class="login-description">
-                <p>At OT-Kit, we are committed to delivering the best quality and exceptional service to ensure your utmost satisfaction.</p>
-                <p>Thank you for choosing OfficeToolKit and creating an account with us. We look forward to providing you with a seamless and productive office experience.</p>
+                    <p>Dear CDO-Team!</p><br>
+                    <p>Welcome to the Childhood Development Organization's Project Management System! This platform is your central hub for efficiently managing office projects. Here, you can seamlessly organize, track, and collaborate on projects, ensuring smooth workflows and successful outcomes.</p>
             </div>
             <div class="text-center mt-3">
                 <p><a href="<?php echo site_url('register') ?>" class="text-decoration-none">I don't have an account!</a><p>
-                <a href="<?php echo site_url('home') ?>" class="text-decoration-none"><b>USE INSTEAD</b></a>
             </div>
         </div>
     </div>

@@ -7,10 +7,9 @@
     <title>CDO-DS</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="/assets/css/innerStyle.css">
 </head>
 
@@ -26,20 +25,18 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="<?php echo base_url('home') ?>"><i class="fa fa-home"></i>
+                        <a class="nav-link active" href="<?php echo base_url('home') ?>"><i class="fa fa-chart-bar"></i>
                             Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="<?php echo base_url('/aymy-analysis/');?>">
-                            <i class="far fa-chart-bar"></i> DB-Analysis</a>
+                        <a class="nav-link active" href="https://cdo.or.tz/"><i class="fa fa-globe"></i> CDO-Site</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="<?php echo base_url('/ib/aymy-analysis/');?>">
-                            <i class="fas fa-chart-line"></i> IB-Analysis</a>
+                        <a class="nav-link active" href="#"><i class="far fa-paper-plane"></i> Shared</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="<?php echo base_url('login/activity') ?>">
-                            <i class="fa fa-link"></i>
+                        <a class="nav-link active" href="<?php echo base_url('login/activity') ?>"><i
+                                class="fa fa-link"></i>
                             Activity</a>
                     </li>
                     <li class="nav-item">
@@ -68,39 +65,28 @@
                     </b></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url('/reached/school/') ?>"><i class="fas fa-users"></i> AYMY
-                    Clubs</a>
+                <a class="nav-link" href="<?php echo base_url('/reached/school/') ?>"> <i class="fas fa-users"></i> CP Panel</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo base_url('/aymy/unasihi-teachers/') ?>"><i class="far fa-user"></i>
-                    Unasihi Teachers</a>
+                    Most-Sick Students</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo base_url('/aymy/head-teachers/') ?>"><i class="fas fa-user"></i>
-                    Head Teachers</a>
+                    Most-Sick Bibi/Babu</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo base_url('/aymy/club-secretaries/') ?>"><i class="far fa-user"></i>
-                    Secretaries</a>
+                    Feeding Program</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url('/aymy/club-chairpersons/') ?>"><i
+                <a class="nav-link" href="<?php// echo base_url('/aymy/club-chairpersons/') ?>"><i
                         class="fas fa-user"></i>
-                    ChairPersons</a>
+                    Class Levels</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url('/aymy-analysis/') ?>">
-                    <i class="fas fa-chart-line"></i>
-                    DB-Analysis</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url('/ib/aymy-analysis/') ?>">
-                    <i class="fas fa-chart-bar"></i>
-                    IB-Analysis</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url('/aymy/uploaded-files/') ?>"><i
-                        class="fas fa-file-alt"></i> AYMY Docs</a>
+                <a class="nav-link" href="<?php echo base_url('/cp-schools/') ?>"><i
+                        class="fas fa-file-alt"></i> CP-Schools</a>
             </li>
 
             <li class="nav-item">
@@ -109,4 +95,3 @@
             </li>
         </ul>
     </div>
-

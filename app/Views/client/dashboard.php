@@ -40,18 +40,20 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link active" href="<?php echo base_url('home') ?>"><i class="fa fa-chart-bar"></i> Dashboard</a>
+          <a class="nav-link active" href="<?php echo base_url('home') ?>"><i class="fa fa-home"></i> Dashboard</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="https://cdo.or.tz/"><i class="fa fa-globe"></i> CDO-Site</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#"><i class="far fa-paper-plane"></i> Shared</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link active" href="<?php echo base_url('/login/activity') ?>"><i class="fa fa-link"></i>
-            Activity</a>
+            Login-Activity</a>
         </li>
+
+          <li class="nav-item">
+              <a class="nav-link active" href="<?php echo base_url('/aymy-analysis/') ?>"><i class="fa fa-chart-bar"></i>
+                  Project-Analysis</a>
+          </li>
         <li class="nav-item">
           <a class="nav-link active" href="<?php echo site_url('account/profile') ?>"><i class="far fa-user-circle"></i>
             Profile</a>
@@ -66,29 +68,57 @@
 
   <div class="container mt-5">
     <div class="row">
+        <!--
       <div class="col-md-4 mb-4">
         <div class="card">
           <div class="card-body text-center">
             <i class="far fa-user-circle panel-icon"></i>
             <h5 class="card-title">ChangaraweProject</h5>
             <p class="card-text">Here you will find/store all the documents related to Changarawe Project.</p>
-            <a href="<?php echo base_url('/project/afyayangumaishayangu/'); ?>"
+            <a href="<?php //echo base_url('/project/changarawe/'); ?>"
               class="btn btn-primary btn-rounded">Let's
               Go</a>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card">
+      </div>-->
+      <div class="col-md-6 mb-4">
+        <div class="card"> 
           <div class="card-body text-center">
-            <i class="fas fa-tasks panel-icon"></i>
-            <h5 class="card-title">AfyaYanguMaishaYangu</h5>
-            <p class="card-text">Here you will find/store all the documents related to #AfyaYanguMaishaYangu.</p>
+            <i class="fa fa-users panel-icon" style="font-size: 60px;"></i>
+            <h5 class="card-title">SCHOOL LEVEL</h5>
             <a href="<?php echo base_url('/reached/school/'); ?>" class="btn btn-primary btn-rounded">Let's Go</a>
           </div>
         </div>
       </div>
-      <div class="col-md-4 mb-4">
+
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-users panel-icon" style="font-size: 60px;"></i>
+                    <h5 class="card-title">COMMUNITY LEVEL</h5>
+                    <a href="<?php echo base_url('/reached-wards/'); ?>" class="btn btn-primary btn-rounded">Let's Go</a>
+                </div>
+            </div>
+        </div>
+        <!--<div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-users panel-icon" style="font-size: 60px;"></i>
+                    <h5 class="card-title">Community Health Workers Reached</h5>
+                    <a href="<?php //echo base_url('/reached/school/'); ?>" class="btn btn-primary btn-rounded">Let's Go</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-users panel-icon" style="font-size: 60px;"></i>
+                    <h5 class="card-title">Nurses and Goverment Officials Reached</h5>
+                    <a href="<?php //echo base_url('/reached/school/'); ?>" class="btn btn-primary btn-rounded">Let's Go</a>
+                </div>
+            </div>
+        </div>-->
+     <!-- <div class="col-md-4 mb-4">
         <div class="card">
           <div class="card-body text-center">
             <i class="fas fa-folder panel-icon"></i>
@@ -123,8 +153,8 @@
               Go</a>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 mb-4">
+      </div>-->
+     <!-- <div class="col-md-4 mb-4">
         <div class="card">
           <div class="card-body text-center">
             <i class="far fa-money-bill-alt panel-icon"></i>
@@ -136,7 +166,7 @@
               Go</a>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="

@@ -13,7 +13,7 @@ class AYMYStudentsModel extends Model
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
     protected $protectFields = true;
-    protected $allowedFields = ['schoolID', 'firstname', 'lastname', 'student_age', 'live_with', 'parent_jobType', 'parent_job', 'student_class', 'membership'];
+    protected $allowedFields = ['schoolID', 'firstname', 'lastname', 'student_age', 'live_with', 'parent_jobType', 'parent_job', 'student_class', 'membership','trained','tested','result','linked','startedARV','status'];
 
     public function checkStudentExist($firstname, $lastname, $age, $class, $liveWith, $jobStatus, $schoolID)
     {

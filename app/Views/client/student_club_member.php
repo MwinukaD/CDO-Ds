@@ -24,8 +24,13 @@
                     <th>Class</th>
                     <th>Age</th>
                     <th>Live with</th>
-                    <th>Parent's job status</th>
-                    <th>Parent's job</th>
+                    <th>Parent's/Gardian's job status</th>
+                    <th>Trained?</th>
+                    <th>Tested?</th>
+                    <th>Test Result</th>
+                    <th>Linked?</th>
+                    <th>Taking ARV?</th>
+                    <th>Edit</th>
                     <th>Delete</th>
                 </tr>
             </thead>
@@ -61,10 +66,46 @@
                             <?php echo $data['parent_jobType'] ?>
                         </td>
                         <td>
-                            <?php echo $data['parent_job'] ?>
+                            <?php if($data['trained']=='YES'){?>
+                                <i class="fas fa-check btn btn-outline-success"> YES</i>
+                            <?php }else{?>
+                            <i class="fas fa-times btn btn-outline-danger"> NO</i>
+                            <?php } ?></php>
                         </td>
-                        <td class="removed_student_id" id="<?php echo $data['id'] ?>"><button class=" btn btn-danger"><i
-                                    class="fas fa-trash"></i></button></td>
+                        <td>
+                            <?php if($data['tested']=='YES'){?>
+                                <i class="fas fa-check btn btn-outline-success"> YES</i>
+                            <?php }else{?>
+                            <i class="fas fa-times btn btn-outline-danger"> NO</i>
+                            <?php } ?></php>
+                        </td>
+                        <td>
+                            <?php if($data['result']=='NEGATIVE'){?>
+                                <button class=" btn btn-outline-success">NEGATIVE</button>
+                            <?php }else{?>
+                            <i class="btn btn-outline-danger"> POSITIVE</i>
+                            <?php } ?></php>
+                        </td>
+                        <td>
+                            <?php if($data['linked']=='YES'){?>
+                                <i class="fas fa-check btn btn-outline-success"> YES</i>
+                            <?php }else{?>
+                            <i class="fas fa-times btn btn-outline-danger"> NO</i>
+                            <?php } ?></php>
+                        </td>
+                        <td>
+                            <?php if($data['startedARV']=='YES'){?>
+                                <i class="fas fa-check btn btn-outline-success"> YES</i>
+                            <?php }else{?>
+                            <i class="fas fa-times btn btn-outline-danger"> NO</i>
+                            <?php } ?></php>
+                        </td>
+                        <td>
+                            <a href=" <?php echo route_to('/edit/student/',$data['id'])?>" class=" btn btn-success"><i class="fas fa-edit"></i></a>
+                        </td>
+                        <td class="removed_student_id" id="<?php echo $data['id'] ?>">
+                            <button class=" btn btn-danger"><i class="fas fa-trash"></i></button>
+                        </td>
                     </tr>
 
                 <?php endforeach ?>
@@ -86,7 +127,7 @@
             <div class="modal-body">
                 <!-- Your form fields go here -->
 
-                <form id="schoolForm" method="POST" action="#">
+                <form id="schoolForm" method="POST">
                     <div class="mb-3">
                         <label for="schoolName" class="form-label">Student Firstname</label>
                         <input type="text" class="form-control" id="schoolName" name="firstname" required>
@@ -98,10 +139,10 @@
                     <div class="mb-3">
                         <label for="parentJobStatus" class="form-label">Student Class / Form?</label>
                         <select class="form-select" id="parentJobStatus" name="class" required>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
+                            <option value="FORM 1">FORM 1</option>
+                            <option value="FORM 2">FORM 2</option>
+                            <option value="FORM 3">FORM 3</option>
+                            <option value="FORM 4">FORM 4</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -112,20 +153,60 @@
                     <div class="mb-3">
                         <label for="parentJobStatus" class="form-label">Membership</label>
                         <select class="form-select" id="parentJobStatus" name="membership" required>
-                            <option value="Normal">Normal Member</option>
-                            <option value="Chairperson">Chairperson</option>
-                            <option value="Secretary">Secretary</option>
+                            <option value="NORMAL">Normal Member</option>
+                            <option value="CHAIR PERSON">Chairperson</option>
+                            <option value="SECRETARY">Secretary</option>
                         </select>
                     </div>
 
                     <div class="mb-3">
                         <label for="parentJobStatus" class="form-label">Parent Job Status</label>
                         <select class="form-select" id="parentJobStatus" name="parent_job_status" required>
-                            <option value="Employed">Employed</option>
-                            <option value="Unemployed">Unemployed</option>
-                            <option value="NotWorking">Not Working</option>
+                            <option value="EMPLOYED">Employed</option>
+                            <option value="SELF EMPLOYED">Self Employed</option>
+                            <option value="JOBLESS">Jobless</option>
                         </select>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="parentJobStatus" class="form-label">Does she trained?</label>
+                        <select class="form-select" id="parentJobStatus" name="trained" required>
+                            <option value="NO">NO</option>
+                            <option value="YES">YES</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="parentJobStatus" class="form-label">Does she Tested?</label>
+                        <select class="form-select" id="parentJobStatus" name="tested" required>
+                            <option value="NO">NO</option>
+                            <option value="YES">YES</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="parentJobStatus" class="form-label">Test Result?</label>
+                        <select class="form-select" id="parentJobStatus" name="result" required>
+                            <option value="NEGATIVE">NEGATIVE</option>
+                            <option value="POSITIVE">POSITIVE</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="parentJobStatus" class="form-label">Does she Linked-HSC?</label>
+                        <select class="form-select" id="parentJobStatus" name="linked" required>
+                            <option value="NO">NO</option>
+                            <option value="YES">YES</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="parentJobStatus" class="form-label">Does she Taking ARVs?</label>
+                        <select class="form-select" id="parentJobStatus" name="taking" required>
+                            <option value="NO">NO</option>
+                            <option value="YES">YES</option>
+                        </select>
+                    </div>
+
 
 
                     <div class="mb-3">

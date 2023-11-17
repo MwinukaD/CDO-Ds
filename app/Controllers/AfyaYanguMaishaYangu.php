@@ -7,11 +7,13 @@ use App\Models\AYMYSchoolsModel;
 use App\Models\AYMYStudentsModel;
 use App\Models\UploadedFilesModel;
 use App\Models\AYMYTeachers;
+use App\Models\AYMYWardsModel;
+use App\Models\AymyWOreached;
+use App\Models\AYMYYoungWomenModel;
 
 
 class AfyaYanguMaishaYangu extends BaseController
 {
-
 
     public function headTeachers()
     {
@@ -25,11 +27,7 @@ class AfyaYanguMaishaYangu extends BaseController
 
         $result['totalHeadTeachers'] = $AYMYTeachers->where('title', "Head Teacher")->countAllResults(); //totalteacher
         return view('client/head_teachers', $result);
-
-
     }
-
-
 
 
     public function clubSecretaries()
@@ -48,7 +46,6 @@ class AfyaYanguMaishaYangu extends BaseController
     }
 
 
-
     public function clubChairpersons()
     {
         $aymyschoolsmodel = new AYMYSchoolsModel(); // Model to count number of schools reached
@@ -63,9 +60,6 @@ class AfyaYanguMaishaYangu extends BaseController
         return view('client/club_chairpersons', $result);
 
     }
-
-
-
 
 
     public function unasihiTeachers()
@@ -85,12 +79,7 @@ class AfyaYanguMaishaYangu extends BaseController
     }
 
 
-
-
-
-
-
-    public function removeSchool() //removeSchool
+    public function removeSchool()
     {
         $schoolID = $this->request->getPost('id');
         $aymyschoolsmodel = new AYMYSchoolsModel(); //Model For Unasihi teachers
@@ -108,7 +97,6 @@ class AfyaYanguMaishaYangu extends BaseController
         }
         return $this->response->setJSON($response);
     }
-
 
 
     public function removeTeacher() //removeSchool
@@ -131,8 +119,6 @@ class AfyaYanguMaishaYangu extends BaseController
     }
 
 
-
-
     public function removeStudent() //removeStudent
     {
         $studentID = $this->request->getPost('id');
@@ -153,11 +139,6 @@ class AfyaYanguMaishaYangu extends BaseController
     }
 
 
-
-
-
-
-
     public function reachedSchools()
     {
         $aymyschoolsmodel = new AYMYSchoolsModel(); //Model For Unasihi teachers
@@ -165,12 +146,6 @@ class AfyaYanguMaishaYangu extends BaseController
         $results['count_schools'] = $aymyschoolsmodel->countAllResults();
         return view('client/reached_schools', $results);
     }
-
-
-
-
-
-
 
 
     public function addNewSchools()
@@ -208,9 +183,6 @@ class AfyaYanguMaishaYangu extends BaseController
     }
 
 
-
-
-
     public function addNewTeacher()
     {
         $AYMYTeachers = new AYMYTeachers();
@@ -231,6 +203,7 @@ class AfyaYanguMaishaYangu extends BaseController
                 'firstname' => $fn,
                 'lastname' => $ln,
                 'title' => $title,
+                'trained'=> $title = $this->request->getVar('trained'),
                 'schoolID' => $sid,
             ];
             if ($AYMYTeachers->save($inputs)) {
@@ -247,8 +220,6 @@ class AfyaYanguMaishaYangu extends BaseController
         }
         return $this->response->setJSON($response);
     }
-
-
 
 
     public function addNewStudent()
@@ -283,7 +254,13 @@ class AfyaYanguMaishaYangu extends BaseController
                 'membership' => $membership,
                 'parent_job' => $parentJob,
                 'live_with' => $liveWith,
-                'parent_jobType' => $jobStatus
+                'parent_jobType' => $jobStatus,
+                'trained' => $this->request->getVar('trained'),
+                'tested' => $this->request->getVar('tested'),
+                'linked' => $this->request->getVar('linked'),
+                'startedARV' => $this->request->getVar('taking'),
+                'result' => $this->request->getVar('result'),
+
             ];
 
             if ($studentModel->save($inputs)) {
@@ -301,10 +278,6 @@ class AfyaYanguMaishaYangu extends BaseController
         }
         return $this->response->setJSON($response);
     }
-
-
-
-
 
 
     public function clubMemberStudents($id)
@@ -334,13 +307,10 @@ class AfyaYanguMaishaYangu extends BaseController
     }
 
 
-
-
     public function uploadedFiles()
     {
         $UploadedFilesModel = new UploadedFilesModel();
         $result['totalTrashedFiles'] = $UploadedFilesModel->where('project', 'AYMY')->where('status', 'INACTIVE')->countAllResults();
-
 
         $result['uploadedDocs'] = $UploadedFilesModel->select('uploadedfiles.*, cdo_employees.firstname,cdo_employees.lastname,cdo_employees.employee_id_no,')
             ->join('cdo_employees', 'cdo_employees.employee_id_no = uploadedfiles.staffID')
@@ -354,14 +324,10 @@ class AfyaYanguMaishaYangu extends BaseController
     }
 
 
-
-
-
     public function uploadNewFile()
     {
         $session = session();
         $uploadedFilesModel = new UploadedFilesModel();
-        $session = session();
         $uploader = $session->get('employee_id');
         $title = $this->request->getVar('title');
         $type = $this->request->getVar('type');
@@ -370,8 +336,6 @@ class AfyaYanguMaishaYangu extends BaseController
 
         if ($uploadedfile->isValid() && !$uploadedfile->hasMoved()) {
             $filename = $uploadedfile->getRandomName();
-
-
 
             $title = $this->request->getVar('fileTitle');
             $project = $this->request->getVar('project');
@@ -444,7 +408,6 @@ class AfyaYanguMaishaYangu extends BaseController
         }
         return $this->response->setJSON($response);
     }
-
     public function trashedFiles()
     {
         $UploadedFilesModel = new UploadedFilesModel();
@@ -460,6 +423,381 @@ class AfyaYanguMaishaYangu extends BaseController
         return view("client/trashed_files", $result);
     }
 
+
+    public function aYMYanalysis()
+    {
+        $studentmodel = new AYMYStudentsModel();
+        $ywDB = new AYMYYoungWomenModel();
+
+        $results['numberOfAdolescent'] = $studentmodel->where('status', 'ACTIVE')->countAllResults();
+        $results['adolescentTrained'] = $studentmodel->where('status', 'ACTIVE')->where('trained','YES')->countAllResults();
+        $results['adolescentTested'] = $studentmodel->where('status', 'ACTIVE')->where('tested','YES')->countAllResults();
+        $results['adolescentTestedNegative'] = $studentmodel->where('status', 'ACTIVE')->where('tested','YES')->where('result','NEGATIVE')->countAllResults();
+        $results['adolescentTestedPositive'] = $studentmodel->where('status', 'ACTIVE')->where('tested','YES')->where('result','POSITIVE')->countAllResults();
+        $results['adolescentLinked'] = $studentmodel->where('status', 'ACTIVE')->where('linked','YES')->countAllResults();
+        $results['adolescentStartedARV'] = $studentmodel->where('status', 'ACTIVE')->where('startedARV','YES')->countAllResults();
+        $results['employedParents'] = $studentmodel->where('status', 'ACTIVE')->where('parent_jobType','EMPLOYED')->countAllResults();
+        $results['unemployedParents'] = $studentmodel->where('status', 'ACTIVE')->where('parent_jobType','SELF EMPLOYED')->countAllResults();
+        $results['joblessParents'] = $studentmodel->where('status', 'ACTIVE')->where('parent_jobType','JOBLESS')->countAllResults();
+        $results['targetAdolescent'] = 10841;
+
+
+        $results['numberOfYoungWomen'] = $ywDB->where('status', 'ACTIVE')->countAllResults();
+        $results['targetYoungWomen'] = 10841;
+
+        $results['ywTrained'] = $ywDB->where('status', 'ACTIVE')->where('trained','YES')->countAllResults();
+        $results['ywTested'] = $ywDB->where('status', 'ACTIVE')->where('testedHIV','YES')->countAllResults();
+        $results['ywTestedNegative'] = $ywDB->where('status', 'ACTIVE')->where('testedHIV','YES')->where('result','NEGATIVE')->countAllResults();
+        $results['ywTestedPositive'] = $ywDB->where('status', 'ACTIVE')->where('testedHIV','YES')->where('result','POSITIVE')->countAllResults();
+        $results['ywLinked'] = $ywDB->where('status', 'ACTIVE')->where('linkedToHSC','YES')->countAllResults();
+        $results['ywStartedARV'] = $ywDB->where('status', 'ACTIVE')->where('takingARV','YES')->countAllResults();
+        $results['employedYW'] = $ywDB->where('status', 'ACTIVE')->where('job','EMPLOYED')->countAllResults();
+        $results['unemployedYW'] = $ywDB->where('status', 'ACTIVE')->where('job','SELF EMPLOYED')->countAllResults();
+        $results['joblessYW'] = $ywDB->where('status', 'ACTIVE')->where('job','JOBLESS')->countAllResults();
+
+
+        return view('client/aymy_analysis_page', $results);
+    }
+
+    public function reachedWards()
+    {
+        $wardDB = new AYMYWardsModel();
+        $result['reached_wards'] = $wardDB->where('status','ACTIVE')->countAllResults();
+        $result['wards'] = $wardDB->where('status','ACTIVE')->orderBy('id','DESC')->findAll();
+        return view('client/reached_wards', $result);
+    }
+
+    public function addNewWard()
+    {
+        $wardDB = new AYMYWardsModel();
+        $ward = $this->request->getVar('ward');
+        $input = [
+            'ward_name' => $ward
+        ];
+        $exist = $wardDB->where('ward_name', $ward)->first();
+        if (!$exist) {
+            $wardDB->save($input);
+            $response = [
+                'status' => 'success',
+                'message' => 'Ward is successfully inserted '
+            ];
+        } else {
+            $response = [
+                'status' => 'error',
+                'message' => 'This ward already exist'
+            ];
+        }
+        return $this->response->setJSON($response);
+    }
+
+    public function removeWard(){
+        $wardDB = new AYMYWardsModel();
+        $wardID = $this->request->getPost('id');
+        $updateStatus = $wardDB->where('id',$wardID)->set('status','INACTIVE')->update();
+        if($updateStatus){
+            $response = [
+                'status' => 'success',
+                'message' => 'Ward is successfully removed '
+            ];
+        }else{
+            $response = [
+                'status' => 'error',
+                'message' => 'Failed to remove this ward'
+            ];
+        }
+        return $this->response->setJSON($response);
+    }
+
+public function reachedWOs(){
+        $woDB = new AymyWOreached();
+        $wardID = $this->request->getPost('id');
+        $result['totalWO'] = $woDB->where('wardID',$wardID)->countAllResults();
+        $result['wardOfficer'] = $woDB->where('wardID',$wardID)->findAll();
+        return view('client/wo_reached',$result);
+}
+ public function removeWardOfficer(){
+        $officersDB = new AymyWOreached();
+        $officerID = $this->request->getPost('id');
+        $updateStatus = $officersDB->where('id',$officerID)->set('status','INACTIVE')->update();
+        if($updateStatus){
+            $response = [
+                'status' => 'success',
+                'message' => 'Officer is successfully removed '
+            ];
+        }else{
+            $response = [
+                'status' => 'error',
+                'message' => 'Failed to remove this Officer'
+            ];
+        }
+        return $this->response->setJSON($response);
+    }
+
+
+public function reachedWardOfficers($id){
+        $wardOfficerDB = new AymyWOreached();
+        $results['ward_ID'] = $id;
+        $results['totalWEOs'] = $wardOfficerDB->where('wardID',$id)->where('wo_title','WARD EDUCATION OFFICER')->countAllResults();
+        $results['totalNurses'] = $wardOfficerDB->where('wardID',$id)->where('wo_title','NURSE')->countAllResults();
+        $results['totalCHWs'] = $wardOfficerDB->where('wardID',$id)->where('wo_title','COMMUNITY HEALTH WORKERS')->countAllResults();
+        $results['wardOfficers'] = $wardOfficerDB->where('wardID',$id)->where('status','ACTIVE')->orderBy('id','desc')->findAll();
+        return view('client/wo_reached',$results);
+
+}
+
+public function addNewWardOfficer(){
+        $WOreachedDB  = new AymyWOreached();
+        $firstname    = $this->request->getVar('firstname');
+        $lastname     = $this->request->getVar('lastname');
+        $title        = $this->request->getVar('title');
+        $ward         = $this->request->getVar('ward_id');
+
+        $data = [
+            'wo_firstname' => $firstname,
+            'wo_lastname'  => $lastname,
+            'wo_title'     => $title,
+            'wardID'       => $ward,
+            'wo_age'       => $this->request->getVar('age'),
+            'wo_contacts'  => $this->request->getVar('phone'),
+            'trained'      => $this->request->getVar('trained'),
+            'status'       => "ACTIVE",
+        ];
+        $isExisted = $WOreachedDB->where('wo_firstname',$firstname)->where('wo_lastname',$lastname)->where('wo_title',$title)->where('wardID',$ward)->first();
+        if($isExisted){
+            $response = [
+                'status'  => 'error',
+                'message' => 'This Officer already exist..!'
+            ];
+        }else {
+            if ($WOreachedDB->save($data)) {
+                $response = [
+                    'status' => 'success',
+                    'message' => 'Successifully added..!'
+                ];
+            }else{
+                $response = [
+                    'status'  => 'error',
+                    'message' => 'Failed to insert data..!'
+                ];
+            }
+        }
+        return $this->response->setJSON($response);
+}
+
+public function editWardOfficer($id){
+    $officerDB  = new AymyWOreached();
+    $result['details'] = $officerDB->where('id',$id)->findALl();
+    return view('client/edit_ward_officer_details',$result);
+}
+
+public function woDataEditingProcess(){
+
+        $officeID = $this->request->getVar('oid');
+
+        $updated_inputs = [
+            'wo_firstname' => $this->request->getVar('fname'),
+            'wo_title' => $this->request->getVar('title'),
+            'wo_lastname' => $this->request->getVar('lname'),
+            'wo_age' => $this->request->getVar('age'),
+            'wo_contacts' => $this->request->getVar('contact'),
+            'trained' => $this->request->getVar('trained'),
+
+        ];
+        $officerDB  = new AymyWOreached();
+        $updated = $officerDB->updateWOdata($officeID,$updated_inputs);
+        if($updated){
+            $response = [
+                'status' => 'success',
+                'message' => 'Successifully'
+            ];
+        }else{
+            $response = [
+                'status' => 'error',
+                'message' => 'Something went wrong'
+            ];
+        }
+        return $this->response->setJSON($response);
+}
+
+    public function reachedYoungWomen($id){
+        $ywmodel = new AYMYYoungWomenModel();
+        $results['wardID'] = $id;
+        $results['yw'] = $ywmodel->where('wardID',$id)->where('status', 'ACTIVE')->orderBy('id', 'desc')->findAll();
+        $results['totalYW'] = $ywmodel->where('wardID',$id)->where('status', 'ACTIVE')->countAllResults();
+        $results['totalTested'] = $ywmodel->where('wardID',$id)->where('status', 'ACTIVE')->where('testedHIV', 'YES')->countAllResults();
+        $results['totalTakingARVs'] = $ywmodel->where('wardID',$id)->where('status', 'ACTIVE')->where('takingARV', 'YES')->countAllResults();
+        $results['totalLinkedToHSC'] = $ywmodel->where('wardID',$id)->where('status', 'ACTIVE')->where('linkedToHSC', 'YES')->countAllResults();
+        $results['totalTrained'] = $ywmodel->where('wardID',$id)->where('status', 'ACTIVE')->where('trained', 'YES')->countAllResults();
+        return view('client/reached_young_women',$results);
+    }
+
+    public function addNewYoungWomen(){
+        $ywmodel = new AYMYYoungWomenModel();
+        $fullname    = $this->request->getVar('fullname');
+        $age     = $this->request->getVar('age');
+        $job        = $this->request->getVar('job');
+        $wardID         = $this->request->getVar('wardID');
+
+        $isExisted = $ywmodel->where('fullname',$fullname)
+            ->where('age',$age)->where('job',$job)
+            ->where('wardID',$wardID)->first();
+        if($isExisted){
+            $response = [
+                'status'  => 'error',
+                'message' => 'Data Exist..!'
+            ];
+        }else {
+            $data = [
+                'fullname' => $fullname,
+                'age'  => $age,
+                'job'     => $job,
+                'wardID'       => $wardID,
+                'contacts'  => $this->request->getVar('phone'),
+                'trained'       => $this->request->getVar('trained'),
+                'linkedToHSC'      => $this->request->getVar('linked'),
+                'testedHIV'      => $this->request->getVar('tested'),
+                'takingARV'      => $this->request->getVar('taking'),
+                'result'      => $this->request->getVar('result'),
+            ];
+            if ($ywmodel->save($data)) {
+                $response = [
+                    'status' => 'success',
+                    'message' => 'Successifully added..!'
+                ];
+            }else{
+                $response = [
+                    'status'  => 'error',
+                    'message' => 'Failed to insert data..!'
+                ];
+            }
+        }
+        return $this->response->setJSON($response);
+    }
+
+    public function removeYoungWomen(){
+        $ywID = $this->request->getPost('id');
+        $ywDB = new AYMYYoungWomenModel();
+        $updateStatus = $ywDB->where('id',$ywID)->set('status','INACTIVE')->update();
+        if($updateStatus){
+            $response = [
+                'status' => 'success',
+                'message' => 'Officer is successfully removed '
+            ];
+        }else{
+            $response = [
+                'status' => 'error',
+                'message' => 'Failed to remove this Officer'
+            ];
+        }
+        return $this->response->setJSON($response);
+
+
+    }
+
+    public function editreachedYoungWomen($id){
+        $ywDB = new AYMYYoungWomenModel();
+        $results['yw'] = $ywDB->where('id',$id)->findAll();
+        return view('client/edit_young_women',$results);
+    }
+
+public function editingYoungWomen(){
+
+    $ywID = $this->request->getVar('oid');
+
+    $updated_inputs = [
+        'fullname' => $this->request->getVar('fullname'),
+        'age' => $this->request->getVar('age'),
+        'contacts' => $this->request->getVar('contacts'),
+        'job' => $this->request->getVar('job'),
+        'trained' => $this->request->getVar('trained'),
+        'linkedToHSC' => $this->request->getVar('linked'),
+        'testedHIV' => $this->request->getVar('tested'),
+        'takingARV' => $this->request->getVar('taking'),
+        'result' => $this->request->getVar('result'),
+    ];
+    $ywDB = new AYMYYoungWomenModel();
+    $updated = $ywDB->updateYWdata($ywID,$updated_inputs);
+    if($updated){
+        $response = [
+            'status' => 'success',
+            'message' => 'Successifully'
+        ];
+    }else{
+        $response = [
+            'status' => 'error',
+            'message' => 'Something went wrong'
+        ];
+    }
+    return $this->response->setJSON($response);
+
+}
+
+public function editStudentData($id){
+    //$aymyschoolsmodel = new AYMYSchoolsModel();
+    $studentModel = new AYMYStudentsModel();
+    $studentID = $id;
+    $result['students'] = $studentModel->where('id', $id)->findAll();
+    return view('client/edit_student_details', $result);
+
+}
+
+public function editingStudent(){
+    $studentID = $this->request->getVar('sid');
+
+    $updated_inputs = [
+        'firstname' => $this->request->getVar('firstname'),
+        'lastname' => $this->request->getVar('lastname'),
+        'student_age' => $this->request->getVar('student_age'),
+        'live_with' => $this->request->getVar('live_with'),
+        'parent_jobType' => $this->request->getVar('parent_jobType'),
+        'parent_job' => $this->request->getVar('parent_job'),
+        'student_class' => $this->request->getVar('student_class'),
+        'membership' => $this->request->getVar('membership'),
+        'trained' => $this->request->getVar('trained'),
+        'linked' => $this->request->getVar('linked'),
+        'tested' => $this->request->getVar('tested'),
+        'result' => $this->request->getVar('result'),
+        'startedARV' => $this->request->getVar('startedARV'),
+    ];
+    $studentModel = new AYMYStudentsModel();
+    $updated = $studentModel->update($studentID,$updated_inputs);
+    if($updated){
+        $response = [
+            'status' => 'success',
+            'message' => 'Successifully'
+        ];
+    }else{
+        $response = [
+            'status' => 'error',
+            'message' => 'Something went wrong'
+        ];
+    }
+    return $this->response->setJSON($response);
+
+}
+
+public function aYMYIBanalysis(){
+        $woDB = new AymyWOreached();
+        $teachersDB = new AYMYTeachers();
+        $result['reachedNurses'] = $woDB->where('wo_title','NURSE')->where('status','ACTIVE')->countAllResults();
+        $result['trainedNurses'] = $woDB->where('wo_title','NURSE')->where('trained','YES')->where('status','ACTIVE')->countAllResults();
+
+        $result['reachedWEO'] = $woDB->where('wo_title','WARD EDUCATION OFFICER')->where('status','ACTIVE')->countAllResults();
+        $result['trainedWEO'] = $woDB->where('wo_title','WARD EDUCATION OFFICER')->where('trained','YES')->where('status','ACTIVE')->countAllResults();
+
+        $result['reachedCHW'] = $woDB->where('wo_title','COMMUNITY HEALTH WORKER')->where('status','ACTIVE')->countAllResults();
+        $result['trainedCHW'] = $woDB->where('wo_title','COMMUNITY HEALTH WORKER')->where('trained','YES')->where('status','ACTIVE')->countAllResults();
+
+        $result['reachedHTeachers'] = $teachersDB->where('title','Head Teacher')->where('status','ACTIVE')->countAllResults();
+        $result['trainedHTeachers'] = $teachersDB->where('title','Head Teacher')->where('trained','YES')->where('status','ACTIVE')->countAllResults();
+
+        $result['reachedUTeachers'] = $teachersDB->where('title','Unasihi Teacher')->where('status','ACTIVE')->countAllResults();
+        $result['trainedUTeachers'] = $teachersDB->where('title','Unasihi Teacher')->where('trained','YES')->where('status','ACTIVE')->countAllResults();
+
+
+    return view('client/aymy_ib_analysis',$result);
+
+}
 
 
 }

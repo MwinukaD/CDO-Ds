@@ -17,6 +17,7 @@ class ClientController extends BaseController
 
     public function dashboard()
     {
+
         $model = new DashboardModel();
         $result['projects'] = $model->findAll();
         return view('client/dashboard', $result);

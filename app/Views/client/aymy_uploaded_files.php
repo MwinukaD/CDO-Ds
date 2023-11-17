@@ -49,7 +49,9 @@
                         </td>
 
                         <td><button class="removed_doc_ID  btn btn-danger" data-id1="<?php echo $data['id'] ?>"
-                                data-id2="<?php echo $data['employee_id_no'] ?>"><i class="fas fa-trash"></i>
+                                data-id2="<?php
+                                $session = session();
+                                echo $session->get('employee_id'); ?>"><i class="fas fa-trash"></i>
                             </button>
                         </td>
 

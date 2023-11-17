@@ -1,55 +1,43 @@
+
 <?php include 'layout/topSection.php' ?>
 <!-- Page content -->
 <div class="content-container">
     <div class="container">
-        <h4 class="text-center">TRASHED FILES
+        <h4 class="text-center">REACHED WARDS
             <button class="btn btn-primary btn-rounded" data-bs-toggle="modal" data-bs-target="#addSchoolModal"
-                    id="add_SchoolButton"><i class="fas fa-user-alt"></i> Upload New FIle</button>
+                    id="add_SchoolButton">Add Ward</button>
         </h4>
-        <p class="text-center">So far we have
-            <?php echo $totalTrashedFiles; ?> trashed files <a href="<?php echo base_url('/aymy/uploaded-files/') ?>">
-                <i class="fas fa-backward"> Go Back</i>
-            </a>
-        </p>
+        <p class="text-center">So far <?php echo $reached_wards ?> Wards have been reached,</p>
+
         <!-- Data Table -->
         <table class="table" id="myTable">
             <thead>
             <tr>
                 <th>SNo</th>
-                <th>File Title</th>
-                <th>File Type</th>
-                <th>Uploaded By</th>
-                <th>Deleted By</th>
-                <th>Date Deleted</th>
-                <th>Restore</th>
+                <th>Ward Name</th>
+                <th>WARD OFFICERS</th>
+                <th>YOUNG WOMEN</th>
+                <th>Delete</th>
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($uploadedDocs as $index => $data): ?>
+            <?php foreach ($wards as $index => $data): ?>
                 <tr>
                     <td>
                         <?php echo $index + 1 ?>
                     </td>
                     <td>
-                        <?php echo $data['title'] ?>
+                        <?php echo $data['ward_name'].' WARD'?>
                     </td>
                     <td>
-                        <?php echo $data['type'] ?>
+                        <a href="<?php echo route_to('/reached/ward-officers/', $data['id']) ?>" class="weoButton btn btn-success"><i class="fas fa-forward"></i>
                     </td>
-                    <td>
-                        <?php echo $data['firstname'] . '  ' . $data['lastname'] ?>
-                    </td>
-                    <td>
-                        <?php echo $data['deleted_by'] ?>
-                    </td>
-                    <td>
-                        <?php echo $data['deleted_date'] ?>
-                    </td>
-                    <td><button class="removed_doc_ID  btn btn-success" data-id1="<?php echo $data['id'] ?>">
-                            <i class="fas fa-undo"></i>
-                        </button>
+                    <td><a href="<?php echo route_to('/reached/yw/', $data['id']) ?>" class="studentClub btn btn-success"><i
+                                class="fas fa-forward"></i></a>
                     </td>
 
+                    <td class="removed_ward" id="<?php echo $data['id'] ?>"><button class=" btn btn-danger"><i
+                                class="fas fa-trash"></i></button></td>
                 </tr>
 
             <?php endforeach ?>
@@ -65,41 +53,21 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addSchoolModalLabel">Add Student</h5>
+                <h5 class="modal-title" id="addSchoolModalLabel">Add Ward</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <!-- Your form fields go here -->
 
-                <form id="fileSubmitForm" method="POST" action="#">
-
+                <form id="wardForm" method="POST" action="#">
                     <div class="mb-3">
-                        <label for="parentJobStatus" class="form-label"><b>Document Type</b></label>
-                        <select class="form-select" id="parentJobStatus" name="type" required>
-                            <option value="Monthly-Report">Monthly-Report</option>
-                            <option value="Quartery-Report">Quartery-Report</option>
-                            <option value="Activity-Report">Activity-Report</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-
-                    <input type="hidden" class="form-control" id="schoolName" name="project" value="AYMY" required>
-
-
-                    <div class="mb-3">
-                        <label for="schoolName" class="form-label">File Title</label>
-                        <input type="text" class="form-control" id="schoolName" name="fileTitle" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="schoolName" class="form-label">Upload File</label>
-                        <input type="file" class="uploadedfile form-control" id="schoolName" name="uploaded_file"
-                               required>
+                        <label for="schoolName" class="form-label">Ward Name</label>
+                        <input type="text" class="form-control" id="schoolName" name="ward" required>
                     </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary" id="saveSchoolButton">Save Student</button>
+                        <button type="submit" class="btn btn-primary" id="saveSchoolButton">Save Ward</button>
                     </div>
                 </form>
 
@@ -130,8 +98,8 @@
 
 <?php
 //AJAX CODE FOR  ADDING NEW SCHOOL
-include "jsProcess/addNewFile.php";
-include "jsProcess/restoreFile.php";
+//include "jsProcess/addReachedWOs.php";
+include "jsProcess/removeWard.php";
 ?>
 
 
@@ -153,6 +121,52 @@ include "jsProcess/restoreFile.php";
                 'csv', 'excel', 'pdf', 'print' // Enable CSV, Excel, PDF, and Print buttons
             ]
         });
+
+        const schoolTypes = [
+            "KIPERA",
+            "KIBATI",
+            "PEMBA",
+            "MUHONDA",
+            "MASKATI",
+            "MADIZINI"
+            // Add more school types as needed
+        ];
+        const schoolTypeInput = $("#schoolType");
+        const schoolTypeDropdown = $("#schoolTypeDropdown");
+
+        schoolTypeInput.on("input", function () {
+            const filterValue = $(this).val().toLowerCase();
+            const filteredTypes = schoolTypes.filter(type =>
+                type.toLowerCase().includes(filterValue)
+            );
+
+            schoolTypeDropdown.empty();
+            filteredTypes.forEach(type => {
+                const suggestion = $("<div>")
+                    .addClass("dropdown-item suggestion-item")
+                    .text(type);
+                suggestion.click(function () {
+                    schoolTypeInput.val(type);
+                    schoolTypeDropdown.empty();
+                });
+                schoolTypeDropdown.append(suggestion);
+            });
+        });
+
+
+    });
+
+    //LINK TO STUDENTS PAGE
+    $(".t_teacherID").on('click', function () {
+        $schoolID = $(this).attr('id');
+        $.ajax({
+            "data": { id: $schoolID },
+            "method": "POST",
+            "url": "<?php echo base_url('/club/member/students/') ?>",
+            error: function (xhr, status, error) {
+                alert("Error: " + xhr.responseText);
+            }
+        })
     })
 </script>
 </body>

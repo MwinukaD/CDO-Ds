@@ -212,8 +212,8 @@
         <?php foreach($account_data as $row): ?>
           <h2 class="profile-name"><?php echo $row['firstname'].' '.$row['lastname'] ?></h2>
 
-          <img class="profile-pic" src="https://cdn.britannica.com/99/236599-050-1199AD2C/Mark-Zuckerberg-2019.jpg" alt="Profile Picture">
-          
+          <img class="profile-pic" src="https://w7.pngwing.com/pngs/1002/685/png-transparent-business-company-hands-join-shakehand-work-business-icon-thumbnail.png" alt="Profile Picture">
+
           <div class="profile-details">
             <form onsubmit="updateProfileData(event)" id="profile_form">
             

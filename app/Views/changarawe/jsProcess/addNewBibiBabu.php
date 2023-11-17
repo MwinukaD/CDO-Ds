@@ -1,17 +1,20 @@
 <script>
-    $(document).ready(function () { });
-    $(".removed_doc_ID").on('click', function () {
-        let docID = $(this).data('id1');
-        //$who_deleted_id = $(this).data('id2');
+    $("#schoolForm").on('submit', function (event) {
+        event.preventDefault();
+        const formData = new FormData($("#schoolForm")[0]);
 
         $.ajax({
-            "url": "<?php echo base_url('/restore/file/'); ?>",
-            "data": { id: docID },
-            "method": "POST",
+            url: "<?php echo base_url('/add-bibibabu/'); ?>", // Set the URL to your upload function
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
             beforeSend() {
-                $(".removed_doc_ID").attr('disabled', 'disabled');
+                $("#addSchoolModal").hide();
+                $("#add_SchoolButton").hide();
             },
             success: function (response) {
+                $("#add_SchoolButton").show();
                 Swal.fire({
                     position: 'middle',
                     icon: response.status,
@@ -32,12 +35,12 @@
                     //timer: 1500
                 }).then(function () {
                     location.reload();
-                })
+                });
 
             }
-        })
 
-    })
+        });
 
 
+    });
 </script>

@@ -22,6 +22,7 @@
                     <th>SNo</th>
                     <th>Fullname</th>
                     <th>Membership</th>
+                    <th>Trained?</th>
                     <th>Delete</th>
                 </tr>
             </thead>
@@ -37,6 +38,14 @@
                         <td>
                             <?php echo $data['title'] ?>
                         </td>
+
+                        <td>
+                            <?php if($data['trained']=='YES'){?>
+                                <i class="fas fa-check btn btn-outline-success"></i>
+                            <?php }else{?>
+                            <i class="fas fa-times btn btn-outline-danger"></i>
+                            <?php } ?></php> </td>
+
                         <td class="removed_teacher" id="<?php echo $data['id'] ?>"><button class=" btn btn-danger"><i
                                     class="fas fa-trash"></i></button></td>
                     </tr>
@@ -73,6 +82,14 @@
                         <select class="form-select" id="parentJobStatus" name="title" required>
                             <option value="Head Teacher">Head Teacher</option>
                             <option value="Unasihi Teacher">Unasihi Teacher</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="parentJobStatus" class="form-label">Is she/he trained?</label>
+                        <select class="form-select" id="parentJobStatus" name="trained" required>
+                            <option value="NO">NO</option>
+                            <option value="YES">YES</option>
                         </select>
                     </div>
 
