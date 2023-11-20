@@ -14,6 +14,7 @@
                     <th>Fullname</th>
                     <th>School</th>
                     <th>Ward</th>
+                    <th>PhoneNo</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,6 +31,9 @@
                         </td>
                         <td>
                             <?php echo $data['ward'] ?>
+                        </td>
+                        <td>
+                            <?php echo $data['phoneNo'] ?>
                         </td>
                     </tr>
 

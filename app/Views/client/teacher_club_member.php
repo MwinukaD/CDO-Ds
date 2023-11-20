@@ -22,6 +22,7 @@
                     <th>SNo</th>
                     <th>Fullname</th>
                     <th>Membership</th>
+                    <th>Phone No</th>
                     <th>Trained?</th>
                     <th>Delete</th>
                 </tr>
@@ -37,6 +38,9 @@
                         </td>
                         <td>
                             <?php echo $data['title'] ?>
+                        </td>
+                        <td>
+                            <?php echo $data['phoneNo'] ?>
                         </td>
 
                         <td>
@@ -76,6 +80,10 @@
                     <div class="mb-3">
                         <label for="schoolName" class="form-label">Teacher Lastname</label>
                         <input type="text" class="form-control" id="schoolName" name="lastname" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="schoolName" class="form-label">PhoneNo</label>
+                        <input type="text" class="form-control" id="schoolName" name="phone" required>
                     </div>
                     <div class="mb-3">
                         <label for="parentJobStatus" class="form-label">Teacher Title</label>

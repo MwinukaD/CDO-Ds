@@ -1,7 +1,7 @@
 <script>
     $("#schoolForm").on('submit', function (event) {
         event.preventDefault();
-        const data = $(this).serialize();
+        let data = $(this).serialize();
         // alert(data);
         $.ajax({
             "method": "POST",

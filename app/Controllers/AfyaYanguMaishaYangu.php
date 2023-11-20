@@ -147,7 +147,6 @@ class AfyaYanguMaishaYangu extends BaseController
         return view('client/reached_schools', $results);
     }
 
-
     public function addNewSchools()
     {
         $aymyschoolsmodel = new AYMYSchoolsModel(); //Model For Unasihi teachers
@@ -189,9 +188,10 @@ class AfyaYanguMaishaYangu extends BaseController
         $fn = $this->request->getVar('firstname');
         $ln = $this->request->getVar('lastname');
         $title = $this->request->getVar('title');
+        $phone = $this->request->getVar('phone');
         $sid = $this->request->getVar('school_id');
 
-        $exist = $AYMYTeachers->where('firstname', $fn)->where('lastname', $ln)->where('title', $title)->where('schoolID', $sid)->first();
+        $exist = $AYMYTeachers->where('firstname', $fn)->where('lastname', $ln)->where('title', $title)->where('schoolID', $sid)->where('status', 'ACTIVE')->first();
         if ($exist) {
             $response = [
                 'status' => 'error',
@@ -203,6 +203,7 @@ class AfyaYanguMaishaYangu extends BaseController
                 'firstname' => $fn,
                 'lastname' => $ln,
                 'title' => $title,
+                'phoneNo' => $phone,
                 'trained'=> $title = $this->request->getVar('trained'),
                 'schoolID' => $sid,
             ];
@@ -389,7 +390,7 @@ class AfyaYanguMaishaYangu extends BaseController
         $uploadedFilesModel = new UploadedFilesModel(); // Model for UploadedFiles
         $removed_doc = $uploadedFilesModel->changeFileStatus($fileID, $date_deleted, $deleted_by);
         if ($removed_doc) {
-            $response = ["status" => "success", "message" => "File successfully deleted !."];
+            $response = ["status" => "success", "message" => "File successfully deleted"];
         } else {
             $response = ["status" => "error", "message" => "Failed to delete the file"];
         }
@@ -402,7 +403,7 @@ class AfyaYanguMaishaYangu extends BaseController
         $uploadedFilesModel = new UploadedFilesModel(); // Model for UploadedFiles
         $file_restored = $uploadedFilesModel->restoreDeletedFile($fileID);
         if ($file_restored) {
-            $response = ["status" => "success", "message" => "File successfully restored !."];
+            $response = ["status" => "success", "message" => "File successfully restored"];
         } else {
             $response = ["status" => "error", "message" => "Failed to restore this file"];
         }

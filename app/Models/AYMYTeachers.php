@@ -13,7 +13,7 @@ class AYMYTeachers extends Model
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
     protected $protectFields = true;
-    protected $allowedFields = ['firstname', 'lastname', 'title','trained', 'schoolID'];
+    protected $allowedFields = ['firstname', 'lastname', 'title','trained','phoneNo','schoolID'];
 
     // Dates
     protected $useTimestamps = false;

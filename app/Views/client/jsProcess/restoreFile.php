@@ -2,7 +2,6 @@
     $(document).ready(function () { });
     $(".removed_doc_ID").on('click', function () {
         let docID = $(this).data('id1');
-        //$who_deleted_id = $(this).data('id2');
 
         $.ajax({
             "url": "<?php echo base_url('/restore/file/'); ?>",

@@ -12,6 +12,7 @@ class ClientController extends BaseController
 {
     public function account()
     {
+
         return view('client/account');
     }
 
@@ -86,7 +87,7 @@ class ClientController extends BaseController
                 if ($loginActivityInfo) {
                     $session->set('insertID', $loginActivityInfo); #CReating a session to store login id
                 }
-                $session->set('isLoggedIn', TRUE);
+                $session->set('isLoggedIn', true);
                 $session->set('logged_user', $result['id']);
                 $session->set('employee_id', $result['employee_id_no']); #CReating a session if user logged in  
                 $response = ['success' => true,];

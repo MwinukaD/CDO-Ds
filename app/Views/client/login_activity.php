@@ -236,7 +236,7 @@
       </div>
       <div class="col-md-9">
         <div class="user-profile">
-          <h2 class="profile-name">Loging & Logout Records</h2>
+          <h2 class="profile-name">Login & Logout Records</h2>
           <img class="profile-pic" src="https://w7.pngwing.com/pngs/1002/685/png-transparent-business-company-hands-join-shakehand-work-business-icon-thumbnail.png" alt="Profile Picture">
           <div class="profile-details">
     

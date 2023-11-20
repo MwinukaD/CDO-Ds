@@ -13,7 +13,7 @@ $routes->set404Override();
 
 $routes->match(['get', 'post'], '/', 'ClientController::index');
 $routes->post('/submit/account/data', 'ClientController::submitAccountData');
-$routes->match(['get', 'post'], 'register', 'ClientController::account');
+$routes->get('register', 'ClientController::account');
 $routes->post('/update/profile/data', 'AccountController::updateProfileData');
 $routes->post('/remove/unasihi/teacher/', 'AfyaYanguMaishaYangu::removeUnasihiTeacher');
 $routes->post('/remove/school/', 'AfyaYanguMaishaYangu::removeSchool');

@@ -98,7 +98,7 @@
 
 <?php
 //AJAX CODE FOR  ADDING NEW SCHOOL
-//include "jsProcess/addReachedWOs.php";
+include "jsProcess/addNewWard.php";
 include "jsProcess/removeWard.php";
 ?>
 
